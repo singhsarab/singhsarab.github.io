@@ -44,7 +44,7 @@ const PROJECTS = {
   mcp: {
     title: 'MCP Integrations — GenAI & Wearables',
     subtitle: 'Platform · API · Compliance',
-    body: `<p>Designed onboarding tooling and MCP contracts to register third-party APIs as tools for Meta AI and Wearables. Coordinated across Partnerships, Legal and App Management to enable secure integrations with partners such as Spotify and OpenTable.</p>
+    body: `<p>Designed onboarding tooling and MCP contracts to register third-party APIs as tools for Meta AI and Wearables. Coordinated across Partnerships, Legal and App Management to enable secure, compliant integrations.</p>
            <ul><li>Automated registration of MCP contracts and tool registration</li><li>Privacy and FTC safeguards implemented via automated checks</li></ul>
            <p><strong>Impact:</strong> Reduced manual onboarding and enabled compliant product integrations.</p>`,
     footer: 'Tech: TypeScript · Go · Kubernetes · Observability'
