@@ -1,37 +1,164 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>My Personal Blog</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <header>
-      <h1>Welcome to My Personal Blog</h1>
-      <nav>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sarabjot Singh — Portfolio</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Meta for social preview -->
+  <meta name="description" content="Sarabjot Singh — Senior Software Engineer. Building DevOps platforms, data pipelines and integrations." />
+</head>
+<body>
+  <div class="grain"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#">Sarabjot Singh</a>
+      <nav class="header-nav" aria-label="Primary">
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-    </header>
-    <main>
-      <section id="about">
-        <h2>About Me</h2>
-        <p>I am a senior software engineer working at Meta UK with over 10 years of experience in the industry. I specialize in building tools, DevOps platforms, Data pipelines and integrations. I have been working in Security and Integrity solution teams and supported Data loss prevention and Impersonation prevention. I enjoy staying up-to-date with the latest trends and technologies.</p>
-      </section>
-      <section id="tech">
-        <h2>My GOTO websites</h2>
-        <ul>
-          <li><a href="https://www.wired.com/">Wired</a></li>
-          <li><a href="https://www.theverge.com/">The Verge</a></li>
-          <li><a href="https://techcrunch.com/">TechCrunch</a></li>
-        </ul>
-      </section>
-    </main>
-    <footer>
-      <p>&copy; 2023 My Personal Blog</p>
-    </footer>
-  </body>
-</html>
+      <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
+    </div>
+  </header>
 
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home" role="region" aria-label="Intro">
+      <div class="container hero-inner">
+        <div class="hero-left">
+          <h1 class="name">Sarabjot Singh</h1>
+          <p class="tagline">Senior Software Engineer • Tools · DevOps · Data Platforms</p>
+
+          <p class="cta">
+            <a class="btn" href="#projects">Explore my work</a>
+            <a class="btn ghost" href="#contact">Get in touch</a>
+          </p>
+
+          <p class="quick-links">
+            <a href="https://github.com/singhsarab" target="_blank" rel="noopener">GitHub</a> ·
+            <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+        </div>
+
+        <div class="hero-right" aria-hidden="true">
+          <!-- abstract shape / portrait placeholder -->
+          <div class="portrait" id="portrait">
+            <!-- Replace with your <img src="..."> -->
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Abstract portrait">
+              <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#6dd3ff"/><stop offset="1" stop-color="#7a6bff"/></linearGradient></defs>
+              <rect width="200" height="200" rx="28" fill="url(#g)"/>
+              <g fill="rgba(255,255,255,0.18)">
+                <circle cx="60" cy="80" r="10"/>
+                <circle cx="110" cy="60" r="6"/>
+                <rect x="40" y="110" width="120" height="50" rx="10"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section container" aria-label="About">
+      <div class="section-grid">
+        <div>
+          <h2>About</h2>
+          <p>I am a senior software engineer working at Meta UK with over 10 years of experience in the industry. I specialize in building tools, DevOps platforms, data pipelines and integrations. (Replace this with your preferred bio.)</p>
+        </div>
+        <div>
+          <h3>Skills</h3>
+          <ul class="skills">
+            <li>Infrastructure & DevOps</li>
+            <li>Data engineering</li>
+            <li>Platform tooling</li>
+            <li>Python · Go · TypeScript</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK / EXPERIENCE (brief) -->
+    <section id="work" class="section container" aria-label="Work">
+      <h2>Recent Work</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Meta UK — Senior Software Engineer</h3>
+          <p>Building internal tooling and platform automation for large scale services. (Short description)</p>
+        </article>
+
+        <article class="card">
+          <h3>Previous — Company X</h3>
+          <p>Worked on integrations and data pipelines across distributed systems.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section container" aria-label="Projects">
+      <h2>Featured Projects</h2>
+      <div class="project-grid">
+        <!-- Example project cards; replace with your content -->
+        <a class="project-card" href="#" target="_blank" rel="noopener">
+          <div class="project-meta">
+            <h3>Project One</h3>
+            <p class="muted">Platform tooling & automation</p>
+          </div>
+        </a>
+
+        <a class="project-card" href="#" target="_blank" rel="noopener">
+          <div class="project-meta">
+            <h3>Project Two</h3>
+            <p class="muted">Data pipelines & ETL</p>
+          </div>
+        </a>
+
+        <a class="project-card" href="#" target="_blank" rel="noopener">
+          <div class="project-meta">
+            <h3>Open Source</h3>
+            <p class="muted">Libraries and CLI tools</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section container" aria-label="Contact">
+      <h2>Contact</h2>
+      <p>Interested in collaborating or just want to say hi? Email me at <a href="mailto:you@example.com">you@example.com</a> or connect on <a href="https://www.linkedin.com/">LinkedIn</a>.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Sarabjot Singh — Built with care.</p>
+    </div>
+  </footer>
+
+  <script>
+    // small interactive bits
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+
+    // simple reveal on scroll
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.card, .project-card, .hero-left, .section-grid > div').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
