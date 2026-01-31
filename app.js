@@ -156,9 +156,9 @@ const PROJECTS = {
       <h3>Impact</h3>
       <p>This system dramatically reduced manual onboarding time and enabled compliant, scalable product integrations with major third-party services, opening new capabilities for Meta's AI and wearable products.</p>
       
-      <p><strong>Technologies:</strong> TypeScript, Go, Kubernetes, Observability tools, API Gateway</p>
+      <p><strong>Technologies:</strong> Hack, Rust, TAO, ZippyDB, Memcache</p>
     `,
-    footer: 'Tech: TypeScript · Go · Kubernetes · Observability'
+    footer: 'Tech: Hack · Rust · TAO · ZippyDB · Memcache'
   },
   governance: {
     title: 'API Governance & Continuous Oversight',
@@ -176,11 +176,11 @@ const PROJECTS = {
       </ul>
       
       <h3>Technical Approach</h3>
-      <p>Built a scalable, event-driven architecture using Kafka for real-time data streaming, Python for data processing, and comprehensive monitoring dashboards to track compliance metrics across all API endpoints.</p>
+      <p>Built a scalable architecture with comprehensive monitoring dashboards to track compliance metrics across all API endpoints, ensuring data sharing meets regulatory requirements.</p>
       
-      <p><strong>Technologies:</strong> Python, Kafka, Monitoring & Alerting, Data Pipelines</p>
+      <p><strong>Technologies:</strong> Hack, Rust, TAO, ZippyDB, Memcache</p>
     `,
-    footer: 'Tech: Python · Kafka · Monitoring'
+    footer: 'Tech: Hack · Rust · TAO · ZippyDB · Memcache'
   },
   actor: {
     title: 'Actor Misrepresentation Detection System',
@@ -203,9 +203,9 @@ const PROJECTS = {
         <li>Reduced prevalence of bad actors through effective detection and enforcement</li>
       </ul>
       
-      <p><strong>Technologies:</strong> Machine Learning, Event-driven Infrastructure, Python, Data Analytics</p>
+      <p><strong>Technologies:</strong> Machine Learning, Hack, Rust, TAO, ZippyDB, Memcache</p>
     `,
-    footer: 'Tech: ML · Event-driven infra'
+    footer: 'Tech: ML · Hack · Rust · TAO'
   },
   underage: {
     title: 'Underage Reporting & Enforcement',
@@ -228,9 +228,9 @@ const PROJECTS = {
         <li>Maintained comprehensive audit trails for regulatory oversight</li>
       </ul>
       
-      <p><strong>Technologies:</strong> Secure Data Pipelines, Compliance Frameworks, Automated Enforcement</p>
+      <p><strong>Technologies:</strong> Hack, Rust, TAO, ZippyDB, Memcache</p>
     `,
-    footer: 'Tech: Secure data pipelines'
+    footer: 'Tech: Hack · Rust · TAO'
   },
   gpi: {
     title: 'GitHub Private Instances',
