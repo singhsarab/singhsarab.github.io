@@ -1111,7 +1111,73 @@ body {
   }
 
   .section:nth-child(even) {
-    background: rgba(10, 14, 39, 0.3);
+    background: rgba(10, 14, 39, 0.5);
+  }
+
+  /* Solid backgrounds for all cards on mobile */
+  .timeline-node {
+    background: rgba(10, 14, 39, 0.95) !important;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+
+  .project-card {
+    background: rgba(10, 14, 39, 0.95) !important;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  .skill-category {
+    background: rgba(10, 14, 39, 0.95) !important;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  .edu-item {
+    background: rgba(10, 14, 39, 0.95) !important;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  .achievement-item {
+    background: rgba(10, 14, 39, 0.95) !important;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  .highlight-card {
+    background: rgba(10, 14, 39, 0.95) !important;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  .contact-card {
+    background: rgba(10, 14, 39, 0.95) !important;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  .btn.ghost {
+    background: rgba(10, 14, 39, 0.9) !important;
+    border: 1px solid rgba(139, 92, 246, 0.5);
+  }
+
+  .modal-content {
+    background: rgba(10, 14, 39, 0.98) !important;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+
+  .stat-card {
+    background: rgba(10, 14, 39, 0.9) !important;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+
+  .hero-badge {
+    background: rgba(139, 92, 246, 0.2) !important;
+    border: 1px solid rgba(139, 92, 246, 0.5);
+  }
+
+  .interest-tag {
+    background: rgba(139, 92, 246, 0.2) !important;
+    border: 1px solid rgba(139, 92, 246, 0.5);
+  }
+
+  .skill-item {
+    background: rgba(10, 14, 39, 0.8) !important;
+    border: 1px solid rgba(139, 92, 246, 0.3);
   }
 
   .section-header {
