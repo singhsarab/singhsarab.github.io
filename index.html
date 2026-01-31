@@ -3,94 +3,172 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sarabjot Singh — Technical Leadership</title>
+  <title>Sarabjot Singh — Technical Leadership at Meta | Ex-Microsoft</title>
   <meta name="description" content="Sarabjot Singh — Technical leader at Meta (Ex‑Microsoft). Platform modernization, governance, observability, and developer productivity." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <meta property="og:title" content="Sarabjot Singh — Technical Leadership at Meta" />
+  <meta property="og:description" content="Experienced Technical Leader with a background at BigTech, skilled in building highly productive teams, modernizing platforms, and driving innovation." />
 </head>
 <body>
   <!-- Particles background -->
   <div id="tsparticles" class="bg-canvas" aria-hidden="true"></div>
 
   <header class="site-header container">
-    <a class="logo" href="#home">Sarabjot</a>
+    <a class="logo" href="#home">Sarabjot Singh</a>
     <nav class="header-nav" aria-label="Primary">
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
         <li><a href="#highlights">Highlights</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
+    <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </header>
 
   <main>
     <!-- HERO -->
     <section id="home" class="hero container">
-      <div class="hero-left">
-        <h1 class="hero-title" id="hero-name">Sarabjot <span class="accent">Singh</span></h1>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          Available for opportunities
+        </div>
+        <h1 class="hero-title">
+          <span class="hero-greeting">Hi, I'm</span>
+          <span class="hero-name">Sarabjot <span class="accent">Singh</span></span>
+        </h1>
         <p class="hero-tag">Technical Leadership at Meta · Ex‑Microsoft</p>
-        <p class="hero-blurb">I lead platform modernization, governance and developer productivity — building secure, scalable systems and tooling that save millions and keep teams productive.</p>
+        <p class="hero-blurb">Experienced Technical Leader with a background at BigTech, skilled in building highly productive teams, modernizing platforms, and driving innovation with a focus on security, compliance, and privacy. I lead platform modernization, governance and developer productivity — building secure, scalable systems and tooling that save millions and keep teams productive.</p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-value">12+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">$15M+</div>
+            <div class="stat-label">Annual Savings</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">1B+</div>
+            <div class="stat-label">Entities/Day</div>
+          </div>
+        </div>
         <p class="hero-actions">
-          <a class="btn primary" href="#experience">Explore experience</a>
-          <a class="btn ghost" href="mailto:sarabjotsing@gmail.com">Email</a>
+          <a class="btn primary" href="#experience">Explore Experience</a>
+          <a class="btn ghost" href="mailto:sarabjotsing@gmail.com">Get in Touch</a>
+          <a class="btn ghost" href="tel:+447503622688">Call Me</a>
         </p>
       </div>
     </section>
 
     <!-- ABOUT -->
     <section id="about" class="section container">
-      <div class="hero-left">
-      <h2>About</h2>
-      <p>Experienced Technical Leader with a background in BigTech. I specialise in building high-performing teams, modernizing platforms, and driving secure innovation across API governance, compliance, and observability.</p>
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <h2>About Me</h2>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <p>I am an experienced Technical Leader with over 12 years of expertise in building high-performing teams and modernizing platforms at scale. My career spans across two of the world's leading technology companies — Meta and Microsoft — where I have consistently driven innovation with a strong focus on security, compliance, and privacy.</p>
+          <p>At Meta, I currently lead API Management initiatives, architecting MCP integrations for GenAI and Wearables with third-party partners like Spotify and OpenTable. I've built governance tooling that validates over 1 billion entities per day, ensuring data sharing complies with FTC safeguards while accelerating API launches by 10x and saving the organization $15+ million annually.</p>
+          <p>Previously, I led Cross-Meta Integrity efforts, designing end-to-end systems for actor misrepresentation detection and underage enforcement across Facebook, Instagram, and Meta accounts. At Microsoft, I architected GitHub Private Instances and drove the development of the open-source Test Platform V2 that powers testing across Visual Studio, VS Code, and Azure DevOps.</p>
+          <p>Beyond technical execution, I excel at cross-functional collaboration with Legal, Privacy, Partnerships, and Product teams to deliver compliant, scalable solutions that balance innovation with responsibility.</p>
+        </div>
+        <div class="about-interests">
+          <h3>Interests & Hobbies</h3>
+          <div class="interest-tags">
+            <span class="interest-tag">💰 Finance</span>
+            <span class="interest-tag">🎭 Theatre</span>
+            <span class="interest-tag">✏️ Sketching</span>
+            <span class="interest-tag">✈️ Travel</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- EXPERIENCE (timeline with embedded project cards) -->
+    <!-- EXPERIENCE -->
     <section id="experience" class="section container">
-      <h2>Experience — impact first</h2>
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2>Experience — Impact First</h2>
+      </div>
 
       <div class="timeline">
 
         <!-- Meta: API Management -->
         <article class="timeline-node">
+          <div class="timeline-marker"></div>
           <div class="role-head">
-            <h3>Tech Lead, API Management — Meta</h3>
-            <p class="muted">April 2024 — Present</p>
+            <h3>Tech Lead, API Management</h3>
+            <div class="company-info">
+              <span class="company">Meta</span>
+              <span class="duration">April 2024 — Present</span>
+            </div>
           </div>
 
           <div class="role-summary">
             <p>Leading MCP integrations and API governance to onboard third‑party tools into Meta AI and Wearables. Built governance & continuous oversight pipelines to ensure compliant data sharing and automated compliance checks.</p>
             <div class="role-metrics">
-              <div class="metric"><strong>1B</strong><span>entities/day validated</span></div>
-              <div class="metric"><strong>$15M+</strong><span>annual savings (automation)</span></div>
-              <div class="metric"><strong>10x</strong><span>faster API launches</span></div>
+              <div class="metric">
+                <div class="metric-icon">📊</div>
+                <div class="metric-content">
+                  <strong>1B</strong>
+                  <span>entities/day validated</span>
+                </div>
+              </div>
+              <div class="metric">
+                <div class="metric-icon">💰</div>
+                <div class="metric-content">
+                  <strong>$15M+</strong>
+                  <span>annual savings</span>
+                </div>
+              </div>
+              <div class="metric">
+                <div class="metric-icon">⚡</div>
+                <div class="metric-content">
+                  <strong>10x</strong>
+                  <span>faster API launches</span>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="project-cards">
             <button class="project-card" data-project="mcp" aria-haspopup="dialog">
-              <div class="pc-top">
-                <h4>MCP Integrations (GenAI & Wearables)</h4>
-                <span class="tag">Platform · API</span>
-              </div>
-              <p class="pc-desc">Designed onboarding tooling and MCP contracts to register third-party APIs as tools for Meta AI and Wearables.</p>
-              <div class="pc-footer">
-                <span class="badge">Compliance-first</span>
-                <span class="badge">Partnerships: Spotify, OpenTable</span>
+              <div class="project-icon">🔗</div>
+              <div class="pc-content">
+                <div class="pc-top">
+                  <h4>MCP Integrations (GenAI & Wearables)</h4>
+                  <span class="tag">Platform · API</span>
+                </div>
+                <p class="pc-desc">Designed onboarding tooling and MCP contracts to register third-party APIs as tools for Meta AI and Wearables.</p>
+                <div class="pc-footer">
+                  <span class="badge">Compliance-first</span>
+                  <span class="badge">Spotify · OpenTable</span>
+                </div>
               </div>
             </button>
 
             <button class="project-card" data-project="governance" aria-haspopup="dialog">
-              <div class="pc-top">
-                <h4>API Governance & Oversight</h4>
-                <span class="tag">Governance · Observability</span>
-              </div>
-              <p class="pc-desc">Continuous governance tooling that verifies indicators across billions of entities and enforces FTC safeguards.</p>
-              <div class="pc-footer">
-                <span class="badge">1B/day checks</span>
-                <span class="badge">Cross-org adoption</span>
+              <div class="project-icon">🛡️</div>
+              <div class="pc-content">
+                <div class="pc-top">
+                  <h4>API Governance & Oversight</h4>
+                  <span class="tag">Governance · Observability</span>
+                </div>
+                <p class="pc-desc">Continuous governance tooling that verifies indicators across billions of entities and enforces FTC safeguards.</p>
+                <div class="pc-footer">
+                  <span class="badge">1B/day checks</span>
+                  <span class="badge">Cross-org adoption</span>
+                </div>
               </div>
             </button>
           </div>
@@ -98,41 +176,63 @@
 
         <!-- Meta: Cross-Meta Integrity -->
         <article class="timeline-node">
+          <div class="timeline-marker"></div>
           <div class="role-head">
-            <h3>Senior Software Engineer (Tech Lead), Cross‑Meta Integrity — Meta</h3>
-            <p class="muted">Dec 2019 — April 2024</p>
+            <h3>Senior Software Engineer (Tech Lead), Cross‑Meta Integrity</h3>
+            <div class="company-info">
+              <span class="company">Meta</span>
+              <span class="duration">Dec 2019 — April 2024</span>
+            </div>
           </div>
 
           <div class="role-summary">
             <p>Led systems to detect actor misrepresentation and enforce underage account policies across the family of apps, collaborating closely with Legal and Privacy.</p>
             <div class="role-metrics">
-              <div class="metric"><strong>High</strong><span>precision & recall ML models</span></div>
-              <div class="metric"><strong>Multi‑product</strong><span>FB · IG · Meta accounts</span></div>
+              <div class="metric">
+                <div class="metric-icon">🎯</div>
+                <div class="metric-content">
+                  <strong>High Precision</strong>
+                  <span>ML detection models</span>
+                </div>
+              </div>
+              <div class="metric">
+                <div class="metric-icon">📱</div>
+                <div class="metric-content">
+                  <strong>Multi‑Product</strong>
+                  <span>FB · IG · Meta accounts</span>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="project-cards">
             <button class="project-card" data-project="actor" aria-haspopup="dialog">
-              <div class="pc-top">
-                <h4>Actor Misrepresentation System</h4>
-                <span class="tag">Safety · ML</span>
-              </div>
-              <p class="pc-desc">End‑to‑end enforcement platform for proactively detecting and acting on bad actors at scale.</p>
-              <div class="pc-footer">
-                <span class="badge">E2E infra</span>
-                <span class="badge">Privacy & legal aligned</span>
+              <div class="project-icon">🔍</div>
+              <div class="pc-content">
+                <div class="pc-top">
+                  <h4>Actor Misrepresentation System</h4>
+                  <span class="tag">Safety · ML</span>
+                </div>
+                <p class="pc-desc">End‑to‑end enforcement platform for proactively detecting and acting on bad actors at scale.</p>
+                <div class="pc-footer">
+                  <span class="badge">E2E infra</span>
+                  <span class="badge">Privacy aligned</span>
+                </div>
               </div>
             </button>
 
             <button class="project-card" data-project="underage" aria-haspopup="dialog">
-              <div class="pc-top">
-                <h4>Underage Reporting & Enforcement</h4>
-                <span class="tag">Compliance</span>
-              </div>
-              <p class="pc-desc">Designed services to enforce age-based policies, retention/deletion pipelines aligned to FTC commitments.</p>
-              <div class="pc-footer">
-                <span class="badge">Cross-product</span>
-                <span class="badge">Privacy-first</span>
+              <div class="project-icon">👶</div>
+              <div class="pc-content">
+                <div class="pc-top">
+                  <h4>Underage Reporting & Enforcement</h4>
+                  <span class="tag">Compliance</span>
+                </div>
+                <p class="pc-desc">Designed services to enforce age-based policies, retention/deletion pipelines aligned to FTC commitments.</p>
+                <div class="pc-footer">
+                  <span class="badge">Cross-product</span>
+                  <span class="badge">Privacy-first</span>
+                </div>
               </div>
             </button>
           </div>
@@ -140,74 +240,334 @@
 
         <!-- Microsoft / GitHub -->
         <article class="timeline-node">
+          <div class="timeline-marker"></div>
           <div class="role-head">
-            <h3>Senior Software Engineer (Tech Lead) — Azure DevOps & GitHub (Microsoft)</h3>
-            <p class="muted">Dec 2019 — Present</p>
+            <h3>Senior Software Engineer (Tech Lead)</h3>
+            <div class="company-info">
+              <span class="company">Azure DevOps & GitHub (Microsoft)</span>
+              <span class="duration">Feb 2016 — Nov 2019</span>
+            </div>
           </div>
 
           <div class="role-summary">
             <p>Led delivery of Microsoft Information Protection auto-labeling, GitHub Private Instances architecture, and observability pipelines for enterprise offerings.</p>
             <div class="role-metrics">
-              <div class="metric"><strong>Enterprise</strong><span>GitHub Private Instances</span></div>
-              <div class="metric"><strong>Observability</strong><span>Container logging & metrics</span></div>
+              <div class="metric">
+                <div class="metric-icon">🏢</div>
+                <div class="metric-content">
+                  <strong>Enterprise</strong>
+                  <span>GitHub Private Instances</span>
+                </div>
+              </div>
+              <div class="metric">
+                <div class="metric-icon">📈</div>
+                <div class="metric-content">
+                  <strong>+40%</strong>
+                  <span>Performance improvement</span>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="project-cards">
             <button class="project-card" data-project="gpi" aria-haspopup="dialog">
-              <div class="pc-top">
-                <h4>GitHub Private Instances</h4>
-                <span class="tag">Enterprise · Infra</span>
-              </div>
-              <p class="pc-desc">Architected topology, provisioning and monitoring for private enterprise offering, backed by Azure services.</p>
-              <div class="pc-footer">
-                <span class="badge">Topology & provisioning</span>
-                <span class="badge">Monitoring pipelines</span>
+              <div class="project-icon">🔐</div>
+              <div class="pc-content">
+                <div class="pc-top">
+                  <h4>GitHub Private Instances</h4>
+                  <span class="tag">Enterprise · Infra</span>
+                </div>
+                <p class="pc-desc">Architected topology, provisioning and monitoring for private enterprise offering, backed by Azure services.</p>
+                <div class="pc-footer">
+                  <span class="badge">Topology design</span>
+                  <span class="badge">Monitoring pipelines</span>
+                </div>
               </div>
             </button>
 
             <button class="project-card" data-project="testplatform" aria-haspopup="dialog">
-              <div class="pc-top">
-                <h4>Test Platform V2 & MSTest V2</h4>
-                <span class="tag">Open source · Testing</span>
+              <div class="project-icon">🧪</div>
+              <div class="pc-content">
+                <div class="pc-top">
+                  <h4>Test Platform V2 & MSTest V2</h4>
+                  <span class="tag">Open Source · Testing</span>
+                </div>
+                <p class="pc-desc">Designed and implemented the .NET Core test platform and MSTest v2 adapter — improved performance and cross-platform support.</p>
+                <div class="pc-footer">
+                  <span class="badge">Open source</span>
+                  <span class="badge">Performance +40%</span>
+                </div>
               </div>
-              <p class="pc-desc">Designed and implemented the .NET Core test platform and MSTest v2 adapter — improved performance and cross-platform support.</p>
-              <div class="pc-footer">
-                <span class="badge">Open source</span>
-                <span class="badge">Performance +40%</span>
+            </button>
+
+            <button class="project-card" data-project="intellitest" aria-haspopup="dialog">
+              <div class="project-icon">💡</div>
+              <div class="pc-content">
+                <div class="pc-top">
+                  <h4>IntelliTest for Visual Studio</h4>
+                  <span class="tag">Testing · Automation</span>
+                </div>
+                <p class="pc-desc">Built automated unit test generation tool for VS2015, enabling developers to write guardrails with ease and find code issues.</p>
+                <div class="pc-footer">
+                  <span class="badge">3 weeks delivery</span>
+                  <span class="badge">Full UI implementation</span>
+                </div>
               </div>
             </button>
           </div>
         </article>
+
+        <!-- Microsoft: Testing Tools -->
+        <article class="timeline-node">
+          <div class="timeline-marker"></div>
+          <div class="role-head">
+            <h3>Software Engineer</h3>
+            <div class="company-info">
+              <span class="company">Testing Tools for Visual Studio (Microsoft)</span>
+              <span class="duration">Aug 2012 — Jan 2016</span>
+            </div>
+          </div>
+
+          <div class="role-summary">
+            <p>Developed testing tools and frameworks for Visual Studio, including IntelliTest and Coded UI Test with Windows Store support.</p>
+          </div>
+
+          <div class="project-cards">
+            <button class="project-card" data-project="codedui" aria-haspopup="dialog">
+              <div class="project-icon">🖥️</div>
+              <div class="pc-content">
+                <div class="pc-top">
+                  <h4>Coded UI Test</h4>
+                  <span class="tag">Testing · Windows</span>
+                </div>
+                <p class="pc-desc">Added support for Windows Store, created specialized controls for new OS controls, and built test-suite for platform layer.</p>
+                <div class="pc-footer">
+                  <span class="badge">Windows Store</span>
+                  <span class="badge">Platform layer</span>
+                </div>
+              </div>
+            </button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section container">
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <h2>Technical Skills</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Languages & Frameworks</h3>
+          <div class="skill-items">
+            <span class="skill-item">TypeScript</span>
+            <span class="skill-item">Python</span>
+            <span class="skill-item">Go</span>
+            <span class="skill-item">C#</span>
+            <span class="skill-item">.NET Core</span>
+            <span class="skill-item">React</span>
+            <span class="skill-item">Node.js</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Cloud & Infrastructure</h3>
+          <div class="skill-items">
+            <span class="skill-item">Azure</span>
+            <span class="skill-item">Kubernetes</span>
+            <span class="skill-item">Docker</span>
+            <span class="skill-item">Microservices</span>
+            <span class="skill-item">CI/CD</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Data & ML</h3>
+          <div class="skill-items">
+            <span class="skill-item">Machine Learning</span>
+            <span class="skill-item">Kafka</span>
+            <span class="skill-item">Data Pipelines</span>
+            <span class="skill-item">Analytics</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Observability & Governance</h3>
+          <div class="skill-items">
+            <span class="skill-item">Monitoring</span>
+            <span class="skill-item">Logging</span>
+            <span class="skill-item">Metrics</span>
+            <span class="skill-item">API Governance</span>
+            <span class="skill-item">Compliance</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Leadership & Collaboration</h3>
+          <div class="skill-items">
+            <span class="skill-item">Technical Leadership</span>
+            <span class="skill-item">Team Building</span>
+            <span class="skill-item">Cross-functional Collaboration</span>
+            <span class="skill-item">Agile/Scrum</span>
+            <span class="skill-item">Mentoring</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION & ACHIEVEMENTS -->
+    <section id="education" class="section container">
+      <div class="section-header">
+        <span class="section-number">04</span>
+        <h2>Education & Achievements</h2>
+      </div>
+      
+      <div class="education-achievements">
+        <div class="education-block">
+          <h3>Education</h3>
+          <div class="edu-item">
+            <div class="edu-icon">🎓</div>
+            <div class="edu-content">
+              <h4>Bachelor of Engineering (Computers)</h4>
+              <p class="edu-school">Thapar University</p>
+              <p class="edu-details">
+                <span class="edu-year">2012</span>
+                <span class="edu-grade">CGPA: 9.52/10</span>
+              </p>
+            </div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-icon">📚</div>
+            <div class="edu-content">
+              <h4>Higher Secondary (XII)</h4>
+              <p class="edu-school">Central Board of Secondary Education</p>
+              <p class="edu-details">
+                <span class="edu-year">2008</span>
+                <span class="edu-grade">92.8%</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="achievements-block">
+          <h3>Honors & Achievements</h3>
+          <div class="achievement-items">
+            <div class="achievement-item">
+              <div class="achievement-icon">⭐</div>
+              <div class="achievement-content">
+                <h4>Microsoft Star Awards</h4>
+                <p>Recognized for contributions to GitHub Private Instances, Test Platform, and IntelliTest</p>
+              </div>
+            </div>
+            <div class="achievement-item">
+              <div class="achievement-icon">🏆</div>
+              <div class="achievement-content">
+                <h4>Hackathon Awards</h4>
+                <p>Won Critic's and People's Choice Award for ChatBot at Microsoft Hackathon</p>
+              </div>
+            </div>
+            <div class="achievement-item">
+              <div class="achievement-icon">💎</div>
+              <div class="achievement-content">
+                <h4>Full Tuition Scholarship</h4>
+                <p>Awarded Full Fee Waiver for all 4 years of university education</p>
+              </div>
+            </div>
+            <div class="achievement-item">
+              <div class="achievement-icon">🥇</div>
+              <div class="achievement-content">
+                <h4>Merit Scholarship</h4>
+                <p>Topped School with 93% aggregate in CBSE Board X</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- PUBLIC HIGHLIGHTS -->
     <section id="highlights" class="section container">
-      <h2>Public highlights</h2>
-      <div class="cards">
-        <a class="card" href="https://channel9.msdn.com/Shows/On-NET/Exploring-the-Visual-Studio-Test-Platform" target="_blank" rel="noopener">
-          <h4>Exploring the Visual Studio Test Platform</h4>
+      <div class="section-header">
+        <span class="section-number">05</span>
+        <h2>Public Highlights</h2>
+      </div>
+      <div class="highlight-cards">
+        <a class="highlight-card" href="https://channel9.msdn.com/Shows/On-NET/Exploring-the-Visual-Studio-Test-Platform" target="_blank" rel="noopener">
+          <div class="highlight-icon">🎥</div>
+          <div class="highlight-content">
+            <h4>Exploring the Visual Studio Test Platform</h4>
+            <p>Channel 9 - On .NET Show</p>
+            <span class="highlight-link">Watch Video →</span>
+          </div>
         </a>
-        <a class="card" href="https://channel9.msdn.com/Shows/On-NET/Writing-tests-with-MSTest-v2" target="_blank" rel="noopener">
-          <h4>Writing tests with MSTest v2</h4>
+        <a class="highlight-card" href="https://channel9.msdn.com/Shows/On-NET/Writing-tests-with-MSTest-v2" target="_blank" rel="noopener">
+          <div class="highlight-icon">🎥</div>
+          <div class="highlight-content">
+            <h4>Writing tests with MSTest v2</h4>
+            <p>Channel 9 - On .NET Show</p>
+            <span class="highlight-link">Watch Video →</span>
+          </div>
+        </a>
+        <a class="highlight-card" href="https://github.com/microsoft/vstest" target="_blank" rel="noopener">
+          <div class="highlight-icon">💻</div>
+          <div class="highlight-content">
+            <h4>Visual Studio Test Platform</h4>
+            <p>Open Source Project on GitHub</p>
+            <span class="highlight-link">View Repository →</span>
+          </div>
+        </a>
+        <a class="highlight-card" href="https://github.com/microsoft/testfx" target="_blank" rel="noopener">
+          <div class="highlight-icon">💻</div>
+          <div class="highlight-content">
+            <h4>MSTest Framework</h4>
+            <p>Open Source Project on GitHub</p>
+            <span class="highlight-link">View Repository →</span>
+          </div>
         </a>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact" class="section container">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:sarabjotsing@gmail.com">sarabjotsing@gmail.com</a></p>
+      <div class="section-header">
+        <span class="section-number">06</span>
+        <h2>Get in Touch</h2>
+      </div>
+      <div class="contact-content">
+        <p class="contact-intro">I'm always open to discussing new opportunities, collaborations, or just having a conversation about technology and innovation. Feel free to reach out!</p>
+        <div class="contact-methods">
+          <a href="mailto:sarabjotsing@gmail.com" class="contact-method">
+            <div class="contact-icon">📧</div>
+            <div class="contact-details">
+              <h4>Email</h4>
+              <p>sarabjotsing@gmail.com</p>
+            </div>
+          </a>
+          <a href="tel:+447503622688" class="contact-method">
+            <div class="contact-icon">📱</div>
+            <div class="contact-details">
+              <h4>Phone</h4>
+              <p>+44 7503 622688</p>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/sarabjotuk/" target="_blank" rel="noopener" class="contact-method">
+            <div class="contact-icon">💼</div>
+            <div class="contact-details">
+              <h4>LinkedIn</h4>
+              <p>linkedin.com/in/sarabjotuk</p>
+            </div>
+          </a>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer container">
-    <p>© <span id="year"></span> Sarabjot Singh</p>
+    <p>© <span id="year"></span> Sarabjot Singh. Built with passion and precision.</p>
   </footer>
 
   <!-- Modal (project detail) -->
   <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-overlay"></div>
     <div class="modal-content" role="document" tabindex="-1">
       <button class="modal-close" aria-label="Close modal">&times;</button>
       <div id="modal-body"></div>
