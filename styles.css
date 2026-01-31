@@ -1081,7 +1081,17 @@ body {
   .hero {
     padding: 60px 20px;
     min-height: auto;
-    background: linear-gradient(180deg, rgba(10, 14, 39, 0.6) 0%, transparent 100%);
+    background: rgba(10, 14, 39, 0.8) !important;
+  }
+
+  .hero-content {
+    background: rgba(10, 14, 39, 0.7);
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .hero-blurb {
+    color: var(--text) !important;
   }
 
   .hero-name {
@@ -1178,6 +1188,58 @@ body {
   .skill-item {
     background: rgba(10, 14, 39, 0.8) !important;
     border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+
+  /* Additional background fixes for text areas */
+  .about-content {
+    background: rgba(10, 14, 39, 0.7);
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .about-text {
+    color: var(--text) !important;
+  }
+
+  .about-text p {
+    color: var(--muted) !important;
+  }
+
+  .timeline-node-header {
+    background: transparent !important;
+  }
+
+  .timeline-node-content {
+    background: transparent !important;
+  }
+
+  .project-card-content {
+    background: transparent !important;
+  }
+
+  /* Ensure all sections have solid backgrounds */
+  .section {
+    background: rgba(10, 14, 39, 0.6) !important;
+  }
+
+  /* Override any remaining transparent backgrounds */
+  .timeline-node-meta,
+  .timeline-node-stats,
+  .role-header,
+  .company-name,
+  .date-range,
+  .role-description {
+    background: transparent !important;
+    color: var(--muted) !important;
+  }
+
+  /* Ensure text is always visible */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text) !important;
+  }
+
+  p {
+    color: var(--muted) !important;
   }
 
   .section-header {
