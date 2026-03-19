@@ -4,363 +4,324 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sarabjot Singh — Technical Leadership at Meta | Ex-Microsoft</title>
-  <meta name="description" content="Strategic Technical Leader at Meta and Ex-Microsoft. Expert in AI-native engineering, API governance, platform security and compliance." />
+  <meta name="description" content="Strategic Technical Leader with 13+ years at Meta and Microsoft. Expert in AI-native engineering, API governance, and building high-performance teams." />
+  <meta name="author" content="Sarabjot Singh" />
+  <meta property="og:title" content="Sarabjot Singh — Technical Leadership at Meta" />
+  <meta property="og:description" content="Strategic Technical Leader with 13+ years at Meta and Microsoft." />
+  <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- Animated background -->
-  <div class="bg-layer" aria-hidden="true">
-    <canvas id="bg-canvas"></canvas>
-    <div class="bg-orb orb-1"></div>
-    <div class="bg-orb orb-2"></div>
-    <div class="bg-orb orb-3"></div>
-  </div>
+  <!-- Canvas background -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
   <!-- Header -->
-  <header class="site-header" id="site-header">
+  <header id="site-header">
     <div class="header-inner">
-      <a href="#hero" class="logo" aria-label="Sarabjot Singh — Home">
-        <span class="logo-initials">SS</span>
-        <span class="logo-name">Sarabjot Singh</span>
-      </a>
-      <nav class="main-nav" aria-label="Main navigation">
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#highlights">Highlights</a></li>
-          <li><a href="#contact" class="nav-cta">Contact</a></li>
-        </ul>
+      <a href="#" class="wordmark" aria-label="Sarabjot Singh — Home">SS</a>
+
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Recognition</a>
+        <a href="#highlights">Highlights</a>
+        <a href="#contact">Contact</a>
       </nav>
-      <div class="header-controls">
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark theme">
-          <span class="theme-icon theme-icon-dark">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          </span>
-          <span class="theme-icon theme-icon-light">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          </span>
+
+      <div class="header-actions">
+        <button id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle theme">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
-        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+        <button id="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
-    <!-- Mobile nav -->
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#highlights">Highlights</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+
+    <nav id="mobile-nav" aria-label="Mobile navigation">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Recognition</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <main>
 
-    <!-- Hero -->
-    <section class="hero" id="hero">
-      <div class="hero-container">
+    <!-- ═══════════════════════════════════════ HERO -->
+    <section id="hero" class="hero-section">
+      <div class="hero-inner">
         <div class="hero-eyebrow reveal">
-          <span class="status-dot"></span>
-          <span>Available for senior leadership opportunities</span>
+          <span class="availability-dot"></span>
+          Open to senior leadership opportunities
         </div>
-        <h1 class="hero-headline reveal reveal-delay-1">
-          <span class="hero-name-line">Sarabjot Singh</span>
-          <span class="hero-role-line">Technical <em>Leadership</em></span>
-          <span class="hero-company-line">at <strong>Meta</strong> · Ex&#8209;<strong>Microsoft</strong></span>
-        </h1>
-        <p class="hero-summary reveal reveal-delay-2">
-          Strategic Technical Leader with a distinguished track record at Meta and Microsoft in building high-performance teams and architecting compliant, scalable platforms. Expert in AI-native engineering, API governance, and navigating complex security, privacy, and legal landscapes.
+        <h1 class="hero-name reveal reveal-d1">Sarabjot Singh</h1>
+        <p class="hero-title reveal reveal-d2">
+          Technical Leadership at <span class="co-meta">Meta</span> &nbsp;·&nbsp; Ex-<span class="co-msft">Microsoft</span>
         </p>
-        <div class="hero-actions reveal reveal-delay-4">
-          <a href="#experience" class="btn btn-primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-            Explore My Work
-          </a>
-          <a href="#contact" class="btn btn-outline">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            Get in Touch
-          </a>
+        <p class="hero-bio reveal reveal-d3">
+          Strategic Technical Leader with 13+ years at two of the world's most impactful technology companies. I build high-performance teams, architect compliant platforms, and drive innovation at the intersection of AI, security, and privacy.
+        </p>
+        <div class="hero-cta reveal reveal-d4">
+          <a href="#experience" class="btn-primary">View my work</a>
+          <a href="#contact" class="btn-ghost">Get in touch</a>
         </div>
-        <div class="hero-scroll-hint reveal reveal-delay-4" aria-hidden="true">
-          <span>Scroll to explore</span>
-          <div class="scroll-line"></div>
-        </div>
+      </div>
+      <div class="hero-scroll-hint reveal reveal-d5" aria-hidden="true">
+        <span>Scroll</span>
+        <svg width="14" height="20" viewBox="0 0 14 20" fill="none"><rect x="1" y="1" width="12" height="18" rx="6" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="6" r="2" fill="currentColor" class="scroll-dot"/></svg>
       </div>
     </section>
 
-    <!-- About -->
-    <section class="section" id="about">
-      <div class="section-container">
+    <!-- ═══════════════════════════════════════ ABOUT -->
+    <section id="about" class="section">
+      <div class="section-inner">
         <div class="section-label reveal">01 / About</div>
-        <h2 class="section-title reveal reveal-delay-1">Building what matters,<br><em>at scale</em></h2>
-        <div class="about-grid">
-          <div class="about-text reveal reveal-delay-2">
-            <p>I am a Strategic Technical Leader with over 12 years of experience at two of the world's most impactful technology companies — <strong>Meta</strong> and <strong>Microsoft</strong>. My career has been defined by building high-performance teams, architecting mission-critical platforms, and driving innovation at the intersection of AI, security, and compliance.</p>
-            <p>At Meta, I lead API Management initiatives — architecting MCP integrations for GenAI and Wearables with partners like Spotify and OpenTable, and building governance tooling that validates over <strong>1 billion entities per day</strong>. My work has directly saved the organization <strong>$25M+ annually</strong> while accelerating API launches by 10x.</p>
-            <p>I thrive at the intersection of deep technical execution and cross-functional leadership — partnering with Legal, Privacy, XFN, and Product teams to deliver solutions that are both technically excellent and organizationally impactful.</p>
+        <div class="about-layout">
+          <div class="about-main">
+            <h2 class="section-heading reveal reveal-d1">Building what matters,<br><em>at scale</em></h2>
+            <div class="prose reveal reveal-d2">
+              <p>
+                I am a Strategic Technical Leader with over 13 years of experience at <strong>Meta</strong> and <strong>Microsoft</strong>. My career has been defined by building high-performance teams, architecting mission-critical platforms, and driving innovation at the intersection of AI, security, and compliance.
+              </p>
+              <p>
+                At Meta, I lead API Management initiatives — architecting MCP integrations for GenAI and Wearables with partners like Spotify and OpenTable, and building governance tooling that validates over <strong>1 billion entities per day</strong>. My work has directly saved the organization <strong>$25M+ annually</strong> while accelerating API launches by 10x.
+              </p>
+              <p>
+                I thrive at the intersection of deep technical execution and cross-functional leadership — partnering with Legal, Privacy, XFN, and Product teams to deliver solutions that are both technically excellent and organizationally impactful.
+              </p>
+            </div>
           </div>
-          <div class="about-sidebar reveal reveal-delay-3">
-            <div class="about-card">
-              <h3>Core Strengths</h3>
+          <aside class="about-aside reveal reveal-d3">
+            <div class="aside-block">
+              <h3 class="aside-title">Core Strengths</h3>
               <ul class="strength-list">
-                <li>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  AI-Native Engineering
-                </li>
-                <li>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  Platform Architecture & Governance
-                </li>
-                <li>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  Security, Privacy & Compliance
-                </li>
-                <li>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  Cross-functional Leadership
-                </li>
-                <li>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  Team Building & Mentorship
-                </li>
+                <li>AI-Native Engineering</li>
+                <li>Platform Architecture &amp; Governance</li>
+                <li>Security, Privacy &amp; Compliance</li>
+                <li>Cross-functional Leadership</li>
+                <li>Team Building &amp; Mentorship</li>
               </ul>
             </div>
-            <div class="about-card">
-              <h3>Interests</h3>
-              <div class="interest-chips">
-                <span>💰 Finance</span>
-                <span>🎭 Theatre</span>
-                <span>✏️ Sketching</span>
-                <span>✈️ Travel</span>
+            <div class="aside-block">
+              <h3 class="aside-title">Interests</h3>
+              <div class="interest-tags">
+                <span>Finance</span>
+                <span>Theatre</span>
+                <span>Sketching</span>
+                <span>Travel</span>
               </div>
             </div>
-          </div>
+            <div class="aside-block">
+              <h3 class="aside-title">Contact</h3>
+              <a href="mailto:sarabjotsing@gmail.com" class="aside-link">sarabjotsing@gmail.com</a>
+              <a href="https://www.linkedin.com/in/sarabjotuk/" target="_blank" rel="noopener" class="aside-link">linkedin.com/in/sarabjotuk</a>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- Experience -->
-    <section class="section section-alt" id="experience">
-      <div class="section-container">
+    <!-- ═══════════════════════════════════════ EXPERIENCE -->
+    <section id="experience" class="section section-alt">
+      <div class="section-inner">
         <div class="section-label reveal">02 / Experience</div>
-        <h2 class="section-title reveal reveal-delay-1">Career <em>Timeline</em></h2>
+        <h2 class="section-heading reveal reveal-d1">Career <em>Timeline</em></h2>
 
         <!-- Meta API Management -->
-        <div class="exp-block reveal reveal-delay-2">
-          <div class="exp-company-header">
-            <div class="exp-company-logo meta-logo">M</div>
-            <div class="exp-company-info">
-              <h3 class="exp-company">Meta</h3>
-              <span class="exp-dept">API Management</span>
+        <div class="job-block reveal reveal-d2">
+          <div class="job-header">
+            <div class="job-co-badge meta-badge">M</div>
+            <div class="job-meta">
+              <h3 class="job-company">Meta</h3>
+              <span class="job-dept">API Management</span>
             </div>
-            <span class="exp-dates">April 2024 – Present</span>
+            <span class="job-dates">April 2024 – Present</span>
           </div>
 
-          <div class="exp-roles">
-            <div class="exp-role">
-              <div class="exp-role-header">
-                <h4>Tech Lead — MCP Integrations for Meta</h4>
-              </div>
-              <ul class="exp-bullets">
-                <li>Led a team of 5 AI Native Engineers. Designed a compliant platform to onboard third-party APIs, creation of MCP contracts and automatic registration as tools for Meta AI and Wearables integration, saving <strong>$10M+/year</strong>.</li>
-                <li>Built cross-platform compliance service (Rust/Thrift/PHP) to enable consistent, secure and privacy-safe development.</li>
-                <li>Scoped and shipped 5 productivity and engineering excellence tools exceeding expectations: an API governance dashboard, a three-tier API discovery engine (presented at internal tech summit), a developer productivity plugin (top-voted at hackathon), a documentation analyzer for AI readiness, and an API discovery MCP server.</li>
-                <li>Worked closely with multiple cross-organisation teams, XFN and Legal partners.</li>
-              </ul>
-              <div class="exp-tags">
-                <span>Hack</span><span>Rust</span><span>MCP</span><span>GenAI</span><span>Wearables</span><span>Compliance</span>
-              </div>
+          <div class="role-block">
+            <h4 class="role-title">Tech Lead — MCP Integrations for Meta</h4>
+            <ul class="role-bullets">
+              <li>Led a team of 5 AI Native Engineers. Designed a compliant platform to onboard third-party APIs, creation of MCP contracts and automatic registration as tools for Meta AI and Wearables integration, saving <strong>$10M+/year</strong>.</li>
+              <li>Built cross-platform compliance service (Rust/Thrift/PHP) to enable consistent, secure and privacy-safe development.</li>
+              <li>Scoped and shipped 5 productivity and engineering excellence tools exceeding expectations: an API governance dashboard, a three-tier API discovery engine (presented at internal tech summit), a developer productivity plugin (top-voted at hackathon), a documentation analyzer for AI readiness, and an API discovery MCP server.</li>
+              <li>Worked closely with multiple cross-organisation teams, XFN and Legal partners.</li>
+            </ul>
+            <div class="tech-tags">
+              <span>Hack</span><span>Rust</span><span>MCP</span><span>GenAI</span><span>Wearables</span><span>Compliance</span>
             </div>
+          </div>
 
-            <div class="exp-role">
-              <div class="exp-role-header">
-                <h4>Tech Lead — API Governance and Oversight</h4>
-              </div>
-              <ul class="exp-bullets">
-                <li>Led the API Governance platform to ensure data sharing with third parties happens in accordance with FTC safeguards and commitments.</li>
-                <li>Led building of automated verification engine to launch new APIs <strong>10x faster</strong>, saving <strong>$15M+/year</strong>.</li>
-                <li>Led the org-wide engineering excellence initiative to improve observability of services.</li>
-                <li>Built a continuous governance platform, verifying key indicators for <strong>1 billion entities per day</strong>. Collaborated with 5 teams to understand requirements and scale the platform.</li>
-              </ul>
-              <div class="exp-tags">
-                <span>TAO</span><span>ZippyDB</span><span>Memcache</span><span>FTC Compliance</span><span>Observability</span>
-              </div>
+          <div class="role-divider"></div>
+
+          <div class="role-block">
+            <h4 class="role-title">Tech Lead — API Governance and Oversight</h4>
+            <ul class="role-bullets">
+              <li>Led the API Governance platform to ensure data sharing with third parties happens in accordance with FTC safeguards and commitments.</li>
+              <li>Led building of automated verification engine to launch new APIs <strong>10x faster</strong>, saving <strong>$15M+/year</strong>.</li>
+              <li>Led the org-wide engineering excellence initiative to improve observability of services.</li>
+              <li>Built a continuous governance platform, verifying key indicators for <strong>1 billion entities per day</strong>. Collaborated with 5 teams to understand requirements and scale the platform.</li>
+            </ul>
+            <div class="tech-tags">
+              <span>TAO</span><span>ZippyDB</span><span>Memcache</span><span>FTC Compliance</span><span>Observability</span>
             </div>
           </div>
         </div>
 
-        <!-- Meta Cross-Meta Integrity -->
-        <div class="exp-block reveal reveal-delay-2">
-          <div class="exp-company-header">
-            <div class="exp-company-logo meta-logo">M</div>
-            <div class="exp-company-info">
-              <h3 class="exp-company">Meta</h3>
-              <span class="exp-dept">Cross-Meta Integrity</span>
+        <!-- Meta Integrity -->
+        <div class="job-block reveal reveal-d2">
+          <div class="job-header">
+            <div class="job-co-badge meta-badge">M</div>
+            <div class="job-meta">
+              <h3 class="job-company">Meta</h3>
+              <span class="job-dept">Cross-Meta Integrity</span>
             </div>
-            <span class="exp-dates">Dec 2021 – April 2024</span>
+            <span class="job-dates">Dec 2021 – April 2024</span>
           </div>
 
-          <div class="exp-roles">
-            <div class="exp-role">
-              <div class="exp-role-header">
-                <h4>Tech Lead — Actor Misrepresentation</h4>
-              </div>
-              <ul class="exp-bullets">
-                <li>Led the team responsible for services built for enforcing on bad actors across the family of apps.</li>
-                <li>Created and iterated over machine learning models for proactively detecting bad actors with high precision and recall.</li>
-                <li>Worked closely with Legal for privacy and compliance for the product.</li>
-                <li>Collaborated with cross-functional partners for implementation and monitoring, reducing the prevalence of bad actors.</li>
-              </ul>
-              <div class="exp-tags">
-                <span>Machine Learning</span><span>Safety</span><span>Privacy</span><span>Hack</span>
-              </div>
+          <div class="role-block">
+            <h4 class="role-title">Tech Lead — Actor Misrepresentation</h4>
+            <ul class="role-bullets">
+              <li>Led the team responsible for services built for enforcing on bad actors across the family of apps.</li>
+              <li>Created and iterated over machine learning models for proactively detecting bad actors with high precision and recall.</li>
+              <li>Worked closely with Legal for privacy and compliance for the product.</li>
+              <li>Collaborated with cross-functional partners for implementation and monitoring, reducing the prevalence of bad actors.</li>
+            </ul>
+            <div class="tech-tags">
+              <span>Machine Learning</span><span>Safety</span><span>Privacy</span><span>Hack</span>
             </div>
+          </div>
 
-            <div class="exp-role">
-              <div class="exp-role-header">
-                <h4>Tech Lead — Underage Reporting &amp; Enforcement</h4>
-              </div>
-              <ul class="exp-bullets">
-                <li>Led and built the service enforcing on minors (under age 13) not allowed to be on the platform.</li>
-                <li>Designed the E2E service to support Facebook, Instagram and Meta accounts.</li>
-                <li>Worked closely with Legal on case studies, responses and reports to FTC and Retention teams to ensure data deletion within committed SLAs.</li>
-              </ul>
-              <div class="exp-tags">
-                <span>Compliance</span><span>FTC</span><span>FB · IG · Meta</span><span>Privacy</span>
-              </div>
+          <div class="role-divider"></div>
+
+          <div class="role-block">
+            <h4 class="role-title">Tech Lead — Underage Reporting &amp; Enforcement</h4>
+            <ul class="role-bullets">
+              <li>Led and built the service enforcing on minors (under age 13) not allowed to be on the platform.</li>
+              <li>Designed the E2E service to support Facebook, Instagram and Meta accounts.</li>
+              <li>Worked closely with Legal on case studies, responses and reports to FTC and Retention teams to ensure data deletion within committed SLAs.</li>
+            </ul>
+            <div class="tech-tags">
+              <span>Compliance</span><span>FTC</span><span>FB · IG · Meta</span><span>Privacy</span>
             </div>
           </div>
         </div>
 
-        <!-- Microsoft Security & Compliance -->
-        <div class="exp-block reveal reveal-delay-2">
-          <div class="exp-company-header">
-            <div class="exp-company-logo msft-logo">⊞</div>
-            <div class="exp-company-info">
-              <h3 class="exp-company">Microsoft</h3>
-              <span class="exp-dept">Security &amp; Compliance · Azure DevOps &amp; GitHub</span>
+        <!-- Microsoft Security -->
+        <div class="job-block reveal reveal-d2">
+          <div class="job-header">
+            <div class="job-co-badge msft-badge">⊞</div>
+            <div class="job-meta">
+              <h3 class="job-company">Microsoft</h3>
+              <span class="job-dept">Security &amp; Compliance · Azure DevOps &amp; GitHub</span>
             </div>
-            <span class="exp-dates">Dec 2019 – Dec 2021</span>
+            <span class="job-dates">Dec 2019 – Dec 2021</span>
           </div>
 
-          <div class="exp-roles">
-            <div class="exp-role">
-              <div class="exp-role-header">
-                <h4>Tech Lead — Microsoft Information Protection Auto-Labeling</h4>
-              </div>
-              <ul class="exp-bullets">
-                <li>Led the team, partnered with SharePoint and OneDrive teams, re-designed for better customer experience and addressing scaling issues with the old design.</li>
-                <li>Built a new analytics tool for account admins, building data pipelines and an intuitive UI.</li>
-              </ul>
-              <div class="exp-tags">
-                <span>C#</span><span>.NET</span><span>Azure</span><span>Data Pipelines</span>
-              </div>
+          <div class="role-block">
+            <h4 class="role-title">Tech Lead — Microsoft Information Protection Auto-Labeling</h4>
+            <ul class="role-bullets">
+              <li>Led the team, partnered with SharePoint and OneDrive teams, re-designed for better customer experience and addressing scaling issues with the old design.</li>
+              <li>Built a new analytics tool for account admins, building data pipelines and an intuitive UI.</li>
+            </ul>
+            <div class="tech-tags">
+              <span>C#</span><span>.NET</span><span>Azure</span><span>Data Pipelines</span>
             </div>
+          </div>
 
-            <div class="exp-role">
-              <div class="exp-role-header">
-                <h4>Lead Architect — GitHub Private Instances</h4>
-              </div>
-              <ul class="exp-bullets">
-                <li>Spearheaded the v-team in architecting GitHub's enterprise "Private Instances" on Azure, defining the control plane topology and end-to-end provisioning automation.</li>
-                <li>Engineered a containerized monitoring pipeline using syslog and statsd, integrating real-time dashboards and automated alerting with incident management systems.</li>
-                <li>Enhanced system resilience by designing observability frameworks and automated backup solutions for primary nodes.</li>
-              </ul>
-              <div class="exp-tags">
-                <span>Azure</span><span>Containers</span><span>Observability</span><span>GitHub Enterprise</span>
-              </div>
+          <div class="role-divider"></div>
+
+          <div class="role-block">
+            <h4 class="role-title">Lead Architect — GitHub Private Instances</h4>
+            <ul class="role-bullets">
+              <li>Spearheaded the v-team in architecting GitHub's enterprise "Private Instances" on Azure, defining the control plane topology and end-to-end provisioning automation.</li>
+              <li>Engineered a containerized monitoring pipeline using syslog and statsd, integrating real-time dashboards and automated alerting with incident management systems.</li>
+              <li>Enhanced system resilience by designing observability frameworks and automated backup solutions for primary nodes.</li>
+            </ul>
+            <div class="tech-tags">
+              <span>Azure</span><span>Containers</span><span>Observability</span><span>GitHub Enterprise</span>
             </div>
+          </div>
 
-            <div class="exp-role">
-              <div class="exp-role-header">
-                <h4>Manager — GitHub India (Contingent Workforce)</h4>
-              </div>
-              <ul class="exp-bullets">
-                <li>Led end-to-end operations for GitHub India's contingent workforce, overseeing recruitment, technical interviews, and vendor replacements.</li>
-                <li>Facilitated Agile practices including daily scrums to ensure strict adherence to project timelines and deliverables.</li>
-                <li>Optimised resource allocation and managed all workforce logistics including payroll, timesheets, and vendor compliance.</li>
-              </ul>
-              <div class="exp-tags">
-                <span>Team Leadership</span><span>Agile</span><span>Workforce Management</span>
-              </div>
+          <div class="role-divider"></div>
+
+          <div class="role-block">
+            <h4 class="role-title">Manager — GitHub India (Contingent Workforce)</h4>
+            <ul class="role-bullets">
+              <li>Led end-to-end operations for GitHub India's contingent workforce, overseeing recruitment, technical interviews, and vendor replacements.</li>
+              <li>Facilitated Agile practices including daily scrums to ensure strict adherence to project timelines and deliverables.</li>
+              <li>Optimised resource allocation and managed all workforce logistics including payroll, timesheets, and vendor compliance.</li>
+            </ul>
+            <div class="tech-tags">
+              <span>Team Leadership</span><span>Agile</span><span>Workforce Management</span>
             </div>
           </div>
         </div>
 
-        <!-- Microsoft Azure DevOps & VS -->
-        <div class="exp-block reveal reveal-delay-2">
-          <div class="exp-company-header">
-            <div class="exp-company-logo msft-logo">⊞</div>
-            <div class="exp-company-info">
-              <h3 class="exp-company">Microsoft</h3>
-              <span class="exp-dept">Azure DevOps &amp; Visual Studio</span>
+        <!-- Microsoft DevDiv -->
+        <div class="job-block reveal reveal-d2">
+          <div class="job-header">
+            <div class="job-co-badge msft-badge">⊞</div>
+            <div class="job-meta">
+              <h3 class="job-company">Microsoft</h3>
+              <span class="job-dept">Azure DevOps &amp; Visual Studio</span>
             </div>
-            <span class="exp-dates">Feb 2016 – Nov 2019</span>
+            <span class="job-dates">Feb 2016 – Nov 2019</span>
           </div>
 
-          <div class="exp-roles">
-            <div class="exp-role">
-              <div class="exp-role-header">
-                <h4>Software Engineer II — Microsoft Test Platform</h4>
-              </div>
-              <ul class="exp-bullets">
-                <li>Led design and implementation of the new open-source cross-platform .NET Core Test Platform; seamlessly integrated with Visual Studio, VS Code and Azure DevOps. <a href="http://github.com/microsoft/vstest" target="_blank" rel="noopener" class="inline-link">github.com/microsoft/vstest</a></li>
-                <li>Drove design partnering closely with Test Explorer, Live Unit Testing, .NET Core CLI, and 3rd-party tooling teams such as Rider.</li>
-                <li>Implemented parallel discovery and execution support for .NET Core.</li>
-                <li>Added protocol versioning; reduced payload verbosity by ~50%; performance improvements ~40%.</li>
-                <li>Design and implementation of new cross-platform MSTest adapter, navigating ambiguities to make it open source. <a href="http://github.com/microsoft/testfx" target="_blank" rel="noopener" class="inline-link">github.com/microsoft/testfx</a></li>
-              </ul>
-              <div class="exp-tags">
-                <span>C#</span><span>.NET Core</span><span>Open Source</span><span>React</span><span>VS Code</span>
-              </div>
+          <div class="role-block">
+            <h4 class="role-title">Software Engineer II — Microsoft Test Platform</h4>
+            <ul class="role-bullets">
+              <li>Led design and implementation of the new open-source cross-platform .NET Core Test Platform; seamlessly integrated with Visual Studio, VS Code and Azure DevOps. <a href="http://github.com/microsoft/vstest" target="_blank" rel="noopener" class="inline-link">github.com/microsoft/vstest</a></li>
+              <li>Drove design partnering closely with Test Explorer, Live Unit Testing, .NET Core CLI, and 3rd-party tooling teams such as Rider.</li>
+              <li>Implemented parallel discovery and execution support for .NET Core.</li>
+              <li>Added protocol versioning; reduced payload verbosity by ~50%; performance improvements ~40%.</li>
+              <li>Design and implementation of new cross-platform MSTest adapter, navigating ambiguities to make it open source. <a href="http://github.com/microsoft/testfx" target="_blank" rel="noopener" class="inline-link">github.com/microsoft/testfx</a></li>
+            </ul>
+            <div class="tech-tags">
+              <span>C#</span><span>.NET Core</span><span>Open Source</span><span>React</span><span>VS Code</span>
             </div>
           </div>
         </div>
 
-        <!-- Microsoft Visual Studio -->
-        <div class="exp-block reveal reveal-delay-2">
-          <div class="exp-company-header">
-            <div class="exp-company-logo msft-logo">⊞</div>
-            <div class="exp-company-info">
-              <h3 class="exp-company">Microsoft</h3>
-              <span class="exp-dept">Visual Studio</span>
+        <!-- Microsoft VS -->
+        <div class="job-block reveal reveal-d2">
+          <div class="job-header">
+            <div class="job-co-badge msft-badge">⊞</div>
+            <div class="job-meta">
+              <h3 class="job-company">Microsoft</h3>
+              <span class="job-dept">Visual Studio</span>
             </div>
-            <span class="exp-dates">Aug 2012 – Jan 2016</span>
+            <span class="job-dates">Aug 2012 – Jan 2016</span>
           </div>
 
-          <div class="exp-roles">
-            <div class="exp-role">
-              <div class="exp-role-header">
-                <h4>Software Engineer — IntelliTest</h4>
-              </div>
-              <ul class="exp-bullets">
-                <li>Added a new tool for automatically generating unit tests called IntelliTest for VS2015, helping developers write guardrails with ease and find code issues. Wrote the entire UI single-handedly in less than 3 weeks.</li>
-              </ul>
-              <div class="exp-tags">
-                <span>C#</span><span>Visual Studio</span><span>Test Automation</span>
-              </div>
+          <div class="role-block">
+            <h4 class="role-title">Software Engineer — IntelliTest</h4>
+            <ul class="role-bullets">
+              <li>Added a new tool for automatically generating unit tests called IntelliTest for VS2015, helping developers write guardrails with ease and find code issues. Wrote the entire UI single-handedly in less than 3 weeks.</li>
+            </ul>
+            <div class="tech-tags">
+              <span>C#</span><span>Visual Studio</span><span>Test Automation</span>
             </div>
+          </div>
 
-            <div class="exp-role">
-              <div class="exp-role-header">
-                <h4>Software Engineer — Coded UI Test</h4>
-              </div>
-              <ul class="exp-bullets">
-                <li>Brought test platform support to Windows Store. Created specialised controls to represent new OS controls. Built an exhaustive test-suite for the platform layer preventing regressions.</li>
-              </ul>
-              <div class="exp-tags">
-                <span>C#</span><span>Windows Store</span><span>UI Testing</span>
-              </div>
+          <div class="role-divider"></div>
+
+          <div class="role-block">
+            <h4 class="role-title">Software Engineer — Coded UI Test</h4>
+            <ul class="role-bullets">
+              <li>Brought test platform support to Windows Store. Created specialised controls to represent new OS controls. Built an exhaustive test-suite for the platform layer preventing regressions.</li>
+            </ul>
+            <div class="tech-tags">
+              <span>C#</span><span>Windows Store</span><span>UI Testing</span>
             </div>
           </div>
         </div>
@@ -368,54 +329,39 @@
       </div>
     </section>
 
-    <!-- Skills -->
-    <section class="section" id="skills">
-      <div class="section-container">
+    <!-- ═══════════════════════════════════════ SKILLS -->
+    <section id="skills" class="section">
+      <div class="section-inner">
         <div class="section-label reveal">03 / Skills</div>
-        <h2 class="section-title reveal reveal-delay-1">Technical <em>Expertise</em></h2>
-        <div class="skills-grid">
-          <div class="skill-card reveal reveal-delay-1">
-            <div class="skill-card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            </div>
-            <h3>Languages</h3>
-            <div class="skill-tags">
+        <h2 class="section-heading reveal reveal-d1">Technical <em>Expertise</em></h2>
+        <div class="skills-table reveal reveal-d2">
+          <div class="skill-row">
+            <span class="skill-category-name">Languages</span>
+            <div class="skill-pills">
               <span>Hack</span><span>Rust</span><span>C#</span><span>.NET Core</span><span>PHP</span><span>React</span>
             </div>
           </div>
-          <div class="skill-card reveal reveal-delay-2">
-            <div class="skill-card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            </div>
-            <h3>Meta Infrastructure</h3>
-            <div class="skill-tags">
+          <div class="skill-row">
+            <span class="skill-category-name">Meta Infrastructure</span>
+            <div class="skill-pills">
               <span>TAO</span><span>ZippyDB</span><span>Memcache</span><span>Thrift</span><span>MCP</span>
             </div>
           </div>
-          <div class="skill-card reveal reveal-delay-3">
-            <div class="skill-card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-            </div>
-            <h3>Microsoft &amp; Cloud</h3>
-            <div class="skill-tags">
+          <div class="skill-row">
+            <span class="skill-category-name">Microsoft &amp; Cloud</span>
+            <div class="skill-pills">
               <span>Azure</span><span>Containers</span><span>Visual Studio</span><span>VS Code</span><span>Azure DevOps</span>
             </div>
           </div>
-          <div class="skill-card reveal reveal-delay-4">
-            <div class="skill-card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <h3>Specialisations</h3>
-            <div class="skill-tags">
+          <div class="skill-row">
+            <span class="skill-category-name">Specialisations</span>
+            <div class="skill-pills">
               <span>API Governance</span><span>Machine Learning</span><span>Compliance</span><span>Observability</span><span>Privacy</span>
             </div>
           </div>
-          <div class="skill-card reveal reveal-delay-5">
-            <div class="skill-card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <h3>Leadership</h3>
-            <div class="skill-tags">
+          <div class="skill-row">
+            <span class="skill-category-name">Leadership</span>
+            <div class="skill-pills">
               <span>Technical Leadership</span><span>Team Building</span><span>XFN Collaboration</span><span>Agile</span><span>Mentoring</span>
             </div>
           </div>
@@ -423,46 +369,43 @@
       </div>
     </section>
 
-    <!-- Education & Achievements -->
-    <section class="section section-alt" id="education">
-      <div class="section-container">
-        <div class="section-label reveal">04 / Education &amp; Achievements</div>
-        <h2 class="section-title reveal reveal-delay-1">Foundation &amp; <em>Recognition</em></h2>
+    <!-- ═══════════════════════════════════════ EDUCATION & ACHIEVEMENTS -->
+    <section id="education" class="section section-alt">
+      <div class="section-inner">
+        <div class="section-label reveal">04 / Recognition</div>
+        <h2 class="section-heading reveal reveal-d1">Foundation &amp; <em>Achievements</em></h2>
+
         <div class="edu-ach-grid">
-          <div class="edu-col reveal reveal-delay-2">
-            <h3 class="col-title">Education</h3>
-            <div class="edu-card">
+
+          <!-- Education -->
+          <div class="edu-col reveal reveal-d2">
+            <h3 class="col-heading">Education</h3>
+            <div class="edu-item">
               <div class="edu-icon">🎓</div>
-              <div class="edu-info">
+              <div>
                 <h4>Bachelor of Engineering (Computers)</h4>
                 <p class="edu-school">Thapar University</p>
-                <div class="edu-meta">
-                  <span class="edu-year">2012</span>
-                  <span class="edu-grade">CGPA 9.52 / 10</span>
-                </div>
+                <p class="edu-meta">2012 &nbsp;·&nbsp; CGPA 9.52 / 10</p>
               </div>
             </div>
-            <div class="edu-card">
+            <div class="edu-item">
               <div class="edu-icon">📚</div>
-              <div class="edu-info">
+              <div>
                 <h4>Higher Secondary (XII)</h4>
                 <p class="edu-school">Central Board of Secondary Education</p>
-                <div class="edu-meta">
-                  <span class="edu-year">2008</span>
-                  <span class="edu-grade">92.8%</span>
-                </div>
+                <p class="edu-meta">2008 &nbsp;·&nbsp; 92.8%</p>
               </div>
             </div>
           </div>
 
-          <div class="ach-col reveal reveal-delay-3">
-            <h3 class="col-title">Honors &amp; Achievements</h3>
+          <!-- Achievements -->
+          <div class="ach-col reveal reveal-d3">
+            <h3 class="col-heading">Honors &amp; Achievements</h3>
 
-            <!-- Meta -->
             <div class="ach-group">
               <div class="ach-group-label">Meta</div>
-              <div class="ach-card">
-                <div class="ach-icon">🏆</div>
+              <div class="ach-item">
+                <span class="ach-icon">🏆</span>
                 <div>
                   <h4>Hackathon Winner</h4>
                   <p>Top-voted developer productivity plugin at Meta internal hackathon.</p>
@@ -470,18 +413,17 @@
               </div>
             </div>
 
-            <!-- Microsoft -->
             <div class="ach-group">
               <div class="ach-group-label">Microsoft</div>
-              <div class="ach-card">
-                <div class="ach-icon">⭐</div>
+              <div class="ach-item">
+                <span class="ach-icon">⭐</span>
                 <div>
                   <h4>Microsoft Star Awards</h4>
                   <p>Recognised for outstanding contributions to GitHub Private Instances, Test Platform, and IntelliTest.</p>
                 </div>
               </div>
-              <div class="ach-card">
-                <div class="ach-icon">🏆</div>
+              <div class="ach-item">
+                <span class="ach-icon">🏆</span>
                 <div>
                   <h4>Hackathon Awards</h4>
                   <p>Won both Critic's Choice and People's Choice Award for ChatBot at Microsoft Hackathon.</p>
@@ -489,128 +431,91 @@
               </div>
             </div>
 
-            <!-- Academic -->
             <div class="ach-group">
               <div class="ach-group-label">Academic</div>
-              <div class="ach-card">
-                <div class="ach-icon">💎</div>
+              <div class="ach-item">
+                <span class="ach-icon">💎</span>
                 <div>
                   <h4>Full Tuition Scholarship</h4>
                   <p>Awarded Full Fee Waiver for all 4 years of university education.</p>
                 </div>
               </div>
-              <div class="ach-card">
-                <div class="ach-icon">🥇</div>
+              <div class="ach-item">
+                <span class="ach-icon">🥇</span>
                 <div>
                   <h4>Merit Scholarship</h4>
                   <p>Topped school with 93% aggregate in CBSE Board X.</p>
                 </div>
               </div>
             </div>
-
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- Public Highlights -->
-    <section class="section" id="highlights">
-      <div class="section-container">
+    <!-- ═══════════════════════════════════════ HIGHLIGHTS -->
+    <section id="highlights" class="section">
+      <div class="section-inner">
         <div class="section-label reveal">05 / Public Highlights</div>
-        <h2 class="section-title reveal reveal-delay-1">Talks &amp; <em>Open Source</em></h2>
-        <div class="highlights-grid">
-          <a href="https://channel9.msdn.com/Shows/On-NET/Exploring-the-Visual-Studio-Test-Platform" target="_blank" rel="noopener" class="highlight-card reveal reveal-delay-2">
-            <div class="highlight-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-            </div>
+        <h2 class="section-heading reveal reveal-d1">Talks &amp; <em>Open Source</em></h2>
+        <div class="highlights-list">
+          <a href="https://channel9.msdn.com/Shows/On-NET/Exploring-the-Visual-Studio-Test-Platform" target="_blank" rel="noopener" class="highlight-row reveal reveal-d2">
+            <div class="highlight-type">Video</div>
             <div class="highlight-content">
-              <span class="highlight-source">Channel 9 · On .NET</span>
-              <h3>Exploring the Visual Studio Test Platform</h3>
-              <p>Deep-dive into the architecture and design of the cross-platform .NET Core Test Platform.</p>
+              <h4>Exploring the Visual Studio Test Platform</h4>
+              <p>Channel 9 · On .NET — Deep dive into the open-source cross-platform test platform architecture.</p>
             </div>
-            <div class="highlight-arrow">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            </div>
+            <svg class="highlight-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
-          <a href="https://channel9.msdn.com/Shows/On-NET/Writing-tests-with-MSTest-v2" target="_blank" rel="noopener" class="highlight-card reveal reveal-delay-3">
-            <div class="highlight-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-            </div>
+          <a href="https://channel9.msdn.com/Shows/On-NET/Writing-tests-with-MSTest-v2" target="_blank" rel="noopener" class="highlight-row reveal reveal-d3">
+            <div class="highlight-type">Video</div>
             <div class="highlight-content">
-              <span class="highlight-source">Channel 9 · On .NET</span>
-              <h3>Writing Tests with MSTest V2</h3>
-              <p>Walkthrough of the open-source MSTest V2 adapter and modern .NET testing practices.</p>
+              <h4>Writing Tests with MSTest V2</h4>
+              <p>Channel 9 · On .NET — Introduction to the new open-source MSTest V2 framework.</p>
             </div>
-            <div class="highlight-arrow">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            </div>
+            <svg class="highlight-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
-          <a href="https://github.com/microsoft/vstest" target="_blank" rel="noopener" class="highlight-card reveal reveal-delay-4">
-            <div class="highlight-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            </div>
+          <a href="http://github.com/microsoft/vstest" target="_blank" rel="noopener" class="highlight-row reveal reveal-d4">
+            <div class="highlight-type">Open Source</div>
             <div class="highlight-content">
-              <span class="highlight-source">GitHub · Open Source</span>
-              <h3>microsoft/vstest</h3>
-              <p>The Visual Studio Test Platform — cross-platform test runner for .NET, VS, VS Code and Azure DevOps.</p>
+              <h4>microsoft/vstest</h4>
+              <p>Visual Studio Test Platform — Cross-platform .NET test runner and framework.</p>
             </div>
-            <div class="highlight-arrow">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            </div>
+            <svg class="highlight-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
-          <a href="https://github.com/microsoft/testfx" target="_blank" rel="noopener" class="highlight-card reveal reveal-delay-5">
-            <div class="highlight-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            </div>
+          <a href="http://github.com/microsoft/testfx" target="_blank" rel="noopener" class="highlight-row reveal reveal-d5">
+            <div class="highlight-type">Open Source</div>
             <div class="highlight-content">
-              <span class="highlight-source">GitHub · Open Source</span>
-              <h3>microsoft/testfx</h3>
-              <p>MSTest V2 — the open-source, cross-platform MSTest adapter and framework for .NET.</p>
+              <h4>microsoft/testfx</h4>
+              <p>MSTest V2 — Modern, open-source test framework for .NET applications.</p>
             </div>
-            <div class="highlight-arrow">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-            </div>
+            <svg class="highlight-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section class="section section-alt" id="contact">
-      <div class="section-container">
+    <!-- ═══════════════════════════════════════ CONTACT -->
+    <section id="contact" class="section section-alt">
+      <div class="section-inner contact-inner">
         <div class="section-label reveal">06 / Contact</div>
-        <h2 class="section-title reveal reveal-delay-1">Let's <em>Connect</em></h2>
-        <p class="contact-intro reveal reveal-delay-2">I'm always open to discussing senior leadership opportunities, technical collaborations, or simply connecting with fellow technologists. Feel free to reach out through any of the channels below.</p>
-        <div class="contact-grid">
-          <a href="mailto:sarabjotsing@gmail.com" class="contact-card reveal reveal-delay-2">
-            <div class="contact-card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <div class="contact-card-content">
-              <span class="contact-card-label">Email</span>
-              <span class="contact-card-value">sarabjotsing@gmail.com</span>
-            </div>
-            <svg class="contact-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        <h2 class="section-heading reveal reveal-d1">Let's <em>Connect</em></h2>
+        <p class="contact-intro reveal reveal-d2">
+          I'm always open to discussing senior leadership opportunities, technical collaborations, or simply connecting with fellow technologists.
+        </p>
+        <div class="contact-links reveal reveal-d3">
+          <a href="mailto:sarabjotsing@gmail.com" class="contact-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            sarabjotsing@gmail.com
           </a>
-          <a href="tel:+447503622688" class="contact-card reveal reveal-delay-3">
-            <div class="contact-card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.4a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
-            <div class="contact-card-content">
-              <span class="contact-card-label">Phone</span>
-              <span class="contact-card-value">+44 7503 622688</span>
-            </div>
-            <svg class="contact-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          <a href="tel:+447503622688" class="contact-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+            +44 7503 622 688
           </a>
-          <a href="https://www.linkedin.com/in/sarabjotuk/" target="_blank" rel="noopener" class="contact-card reveal reveal-delay-4">
-            <div class="contact-card-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </div>
-            <div class="contact-card-content">
-              <span class="contact-card-label">LinkedIn</span>
-              <span class="contact-card-value">linkedin.com/in/sarabjotuk</span>
-            </div>
-            <svg class="contact-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          <a href="https://www.linkedin.com/in/sarabjotuk/" target="_blank" rel="noopener" class="contact-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            linkedin.com/in/sarabjotuk
           </a>
         </div>
       </div>
@@ -621,14 +526,15 @@
   <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-inner">
-      <span class="footer-name">Sarabjot Singh</span>
-      <span class="footer-copy">© 2025 · Built with care</span>
-      <a href="#hero" class="footer-back-top" aria-label="Back to top">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+      <span>© <span id="year"></span> Sarabjot Singh</span>
+      <a href="#" class="back-top" aria-label="Back to top">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+        Top
       </a>
     </div>
   </footer>
 
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   <script src="app.js"></script>
 </body>
 </html>
