@@ -47,8 +47,8 @@
   --border: rgba(0,0,0,0.08);
   --border-strong: rgba(0,0,0,0.15);
   --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
   --accent: #4f46e5;
   --accent-2: #0891b2;
   --accent-glow: rgba(79,70,229,0.15);
@@ -1058,6 +1058,23 @@ img {
   font-size: 0.85rem;
   color: var(--text-secondary);
   line-height: 1.6;
+}
+
+.ach-group {
+  margin-bottom: 24px;
+}
+
+.ach-group:last-child { margin-bottom: 0; }
+
+.ach-group-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 0 4px 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
 }
 
 /* ── Highlights ─────────────────────────────────────────────── */
