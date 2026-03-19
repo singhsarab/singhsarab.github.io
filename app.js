@@ -1,407 +1,263 @@
-// Enhanced interactive behaviors: particles, animations, modals, mobile menu
+/* ============================================================
+   SARABJOT SINGH — PORTFOLIO
+   Interactive JS: theme toggle, canvas, scroll reveal, counters
+   ============================================================ */
 
-// 1) tsParticles configuration
-if (typeof tsParticles !== 'undefined' && tsParticles.load) {
-  tsParticles.load("tsparticles", {
-    fpsLimit: 60,
-    background: { color: "transparent" },
-    particles: {
-      number: { value: 80, density: { enable: true, area: 800 } },
-      color: { value: ["#8b5cf6", "#06b6d4", "#3b82f6", "#ffffff"] },
-      shape: { type: "circle" },
-      opacity: { 
-        value: 0.15, 
-        random: true,
-        animation: { enable: true, speed: 0.5, minimumValue: 0.05 }
-      },
-      size: { 
-        value: { min: 1, max: 5 },
-        animation: { enable: true, speed: 2, minimumValue: 1 }
-      },
-      links: { 
-        enable: true, 
-        color: "#8b5cf6", 
-        opacity: 0.1, 
-        distance: 150,
-        width: 1
-      },
-      move: { 
-        enable: true, 
-        speed: 1, 
-        direction: "none",
-        random: true,
-        straight: false,
-        outModes: "out",
-        attract: { enable: true, rotateX: 600, rotateY: 1200 }
-      }
-    },
-    interactivity: {
-      detectsOn: "canvas",
-      events: { 
-        onHover: { enable: true, mode: "grab" }, 
-        onClick: { enable: true, mode: "push" },
-        resize: true
-      },
-      modes: { 
-        grab: { distance: 140, links: { opacity: 0.3 } },
-        push: { quantity: 4 }
-      }
-    },
-    detectRetina: true
-  }).catch((e) => { console.warn('tsParticles init failed', e); });
-}
+(function () {
+  'use strict';
 
-// 2) Set current year
-const yearEl = document.getElementById('year');
-if (yearEl) yearEl.textContent = new Date().getFullYear();
+  /* ── Theme Toggle ──────────────────────────────────────────── */
+  const html = document.documentElement;
+  const themeToggle = document.getElementById('theme-toggle');
+  const THEME_KEY = 'ss-portfolio-theme';
 
-// 3) Header scroll effect
-const header = document.querySelector('.site-header');
-let lastScroll = 0;
-
-window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset;
-  
-  if (currentScroll > 50) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
+  function getStoredTheme() {
+    try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; }
   }
-  
-  lastScroll = currentScroll;
-});
 
-// 4) Mobile menu toggle
-const mobileMenuBtn = document.getElementById('mobile-menu-toggle');
-const headerNav = document.querySelector('.header-nav');
+  function setTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
+  }
 
-if (mobileMenuBtn && headerNav) {
-  mobileMenuBtn.addEventListener('click', () => {
-    headerNav.classList.toggle('active');
-    mobileMenuBtn.classList.toggle('active');
+  function initTheme() {
+    const stored = getStoredTheme();
+    if (stored) {
+      setTheme(stored);
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(prefersDark ? 'dark' : 'light');
+    }
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      const current = html.getAttribute('data-theme');
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+    if (!getStoredTheme()) setTheme(e.matches ? 'dark' : 'light');
   });
 
-  // Close menu when clicking nav links
-  document.querySelectorAll('.header-nav a').forEach(link => {
-    link.addEventListener('click', () => {
-      headerNav.classList.remove('active');
-      mobileMenuBtn.classList.remove('active');
+  /* ── Mobile Menu ───────────────────────────────────────────── */
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+
+  if (mobileMenuBtn && mobileNav) {
+    mobileMenuBtn.addEventListener('click', function () {
+      const isOpen = mobileNav.classList.contains('open');
+      mobileNav.classList.toggle('open', !isOpen);
+      mobileMenuBtn.classList.toggle('open', !isOpen);
+      mobileMenuBtn.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    mobileNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileNav.classList.remove('open');
+        mobileMenuBtn.classList.remove('open');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  /* ── Header Scroll ─────────────────────────────────────────── */
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', function () {
+    if (header) header.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  /* ── Animated Canvas Background ────────────────────────────── */
+  var canvas = document.getElementById('bg-canvas');
+  var ctx = canvas ? canvas.getContext('2d') : null;
+  var particles = [];
+  var animFrame;
+  var canvasW = 0, canvasH = 0;
+
+  function getThemeColors() {
+    var isDark = html.getAttribute('data-theme') !== 'light';
+    return isDark
+      ? { dot: 'rgba(99,102,241,', line: 'rgba(99,102,241,' }
+      : { dot: 'rgba(79,70,229,', line: 'rgba(79,70,229,' };
+  }
+
+  function resizeCanvas() {
+    if (!canvas) return;
+    canvasW = canvas.width = window.innerWidth;
+    canvasH = canvas.height = window.innerHeight;
+  }
+
+  function createParticle() {
+    return {
+      x: Math.random() * canvasW,
+      y: Math.random() * canvasH,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r: Math.random() * 1.5 + 0.5,
+      opacity: Math.random() * 0.5 + 0.1
+    };
+  }
+
+  function initParticles() {
+    var count = Math.min(Math.floor((canvasW * canvasH) / 18000), 80);
+    particles = [];
+    for (var i = 0; i < count; i++) particles.push(createParticle());
+  }
+
+  function drawParticles() {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, canvasW, canvasH);
+    var colors = getThemeColors();
+    var maxDist = 140;
+
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0) p.x = canvasW;
+      if (p.x > canvasW) p.x = 0;
+      if (p.y < 0) p.y = canvasH;
+      if (p.y > canvasH) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = colors.dot + p.opacity + ')';
+      ctx.fill();
+
+      for (var j = i + 1; j < particles.length; j++) {
+        var q = particles[j];
+        var dx = p.x - q.x;
+        var dy = p.y - q.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < maxDist) {
+          var alpha = (1 - dist / maxDist) * 0.15;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.strokeStyle = colors.line + alpha + ')';
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+
+    animFrame = requestAnimationFrame(drawParticles);
+  }
+
+  function initCanvas() {
+    if (!canvas) return;
+    resizeCanvas();
+    initParticles();
+    if (animFrame) cancelAnimationFrame(animFrame);
+    drawParticles();
+  }
+
+  window.addEventListener('resize', function () {
+    resizeCanvas();
+    initParticles();
+  }, { passive: true });
+
+  /* ── Scroll Reveal ─────────────────────────────────────────── */
+  var revealEls = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  /* ── Counter Animation ─────────────────────────────────────── */
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function animateCounter(el) {
+    var target = parseInt(el.getAttribute('data-target'), 10);
+    var duration = 1800;
+    var start = performance.now();
+    function step(now) {
+      var elapsed = now - start;
+      var progress = Math.min(elapsed / duration, 1);
+      el.textContent = Math.round(easeOutCubic(progress) * target);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var counterEls = document.querySelectorAll('.stat-num[data-target]');
+  if ('IntersectionObserver' in window) {
+    var counterObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    counterEls.forEach(function (el) { counterObserver.observe(el); });
+  }
+
+  /* ── Active Nav Highlight ──────────────────────────────────── */
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = document.querySelectorAll('.main-nav a');
+
+  if ('IntersectionObserver' in window) {
+    var sectionObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.getAttribute('id');
+          navLinks.forEach(function (link) {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-64px 0px -40% 0px' });
+    sections.forEach(function (s) { sectionObserver.observe(s); });
+  }
+
+  /* ── Smooth Scroll ─────────────────────────────────────────── */
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var href = link.getAttribute('href');
+      if (!href || href === '#') return;
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        var top = target.getBoundingClientRect().top + window.scrollY - 72;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
     });
   });
-}
 
-// 5) Reveal on scroll with IntersectionObserver
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
+  /* ── Cursor Glow (desktop only) ────────────────────────────── */
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    var glow = document.createElement('div');
+    glow.style.cssText = 'position:fixed;width:400px;height:400px;border-radius:50%;pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:opacity 0.3s ease;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);opacity:0';
+    document.body.appendChild(glow);
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in');
-      observer.unobserve(entry.target);
-    }
-  });
-}, observerOptions);
-
-// Observe all animated elements
-const animatedElements = document.querySelectorAll(
-  '.hero-content, .section-header, .about-content, .timeline-node, ' +
-  '.skill-category, .edu-item, .achievement-item, .highlight-card, .contact-method'
-);
-
-animatedElements.forEach(el => {
-  if (el) observer.observe(el);
-});
-
-// 6) Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const href = this.getAttribute('href');
-    if (href === '#' || href === '') return;
-    
-    e.preventDefault();
-    const target = document.querySelector(href);
-    
-    if (target) {
-      const headerOffset = 80;
-      const elementPosition = target.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  });
-});
-
-// 7) Project modal data
-const PROJECTS = {
-  mcp: {
-    title: 'MCP Integrations — GenAI & Wearables',
-    subtitle: 'Platform · API · Compliance',
-    body: `
-      <p>As Technical Lead for this ambitious project, I designed and implemented comprehensive tooling to enable Model Context Protocol (MCP) integration for GenAI and Wearables with third-party partners including Spotify and OpenTable.</p>
-      
-      <h3>Key Responsibilities</h3>
-      <ul>
-        <li>Designed a fully compliant framework to onboard third-party APIs with automated MCP contract creation</li>
-        <li>Built automated registration system for tools enabling Meta AI and Wearables integration</li>
-        <li>Collaborated closely with multiple cross-functional organizations including Partnership XFN, Legal, and App Management teams</li>
-        <li>Ensured all integrations meet FTC safeguards and privacy commitments</li>
-      </ul>
-      
-      <h3>Impact</h3>
-      <p>This system dramatically reduced manual onboarding time and enabled compliant, scalable product integrations with major third-party services, opening new capabilities for Meta's AI and wearable products.</p>
-      
-      <p><strong>Technologies:</strong> Hack, Rust, TAO, ZippyDB, Memcache</p>
-    `,
-    footer: 'Tech: Hack · Rust · TAO · ZippyDB · Memcache'
-  },
-  governance: {
-    title: 'API Governance & Continuous Oversight',
-    subtitle: 'Governance · Observability',
-    body: `
-      <p>Built enterprise-scale tooling for API oversight and governance to ensure data sharing with third parties happens in accordance with FTC safeguards and regulatory commitments.</p>
-      
-      <h3>Key Achievements</h3>
-      <ul>
-        <li>Developed continuous governance tool validating key indicators for <strong>1 billion entities per day</strong></li>
-        <li>Collaborated with 5 teams to leverage and adopt the governance tooling</li>
-        <li>Introduced automated compliance checks that made launching new APIs <strong>10x faster</strong></li>
-        <li>Saved the organization <strong>$15+ million annually</strong> through automation</li>
-        <li>Led org-wide engineering excellence initiative to improve service observability</li>
-      </ul>
-      
-      <h3>Technical Approach</h3>
-      <p>Built a scalable architecture with comprehensive monitoring dashboards to track compliance metrics across all API endpoints, ensuring data sharing meets regulatory requirements.</p>
-      
-      <p><strong>Technologies:</strong> Hack, Rust, TAO, ZippyDB, Memcache</p>
-    `,
-    footer: 'Tech: Hack · Rust · TAO · ZippyDB · Memcache'
-  },
-  actor: {
-    title: 'Actor Misrepresentation Detection System',
-    subtitle: 'Safety · ML',
-    body: `
-      <p>Led the team responsible for building services to enforce policies against bad actors across Meta's family of apps, with a focus on proactive detection and privacy-compliant enforcement.</p>
-      
-      <h3>System Design</h3>
-      <ul>
-        <li>Designed and developed the end-to-end system for Instagram from ground up</li>
-        <li>Created and iterated over machine learning models for proactively detecting bad actors with high precision and recall</li>
-        <li>Built scalable enforcement pipelines capable of handling billions of accounts</li>
-        <li>Implemented privacy-preserving detection mechanisms aligned with legal requirements</li>
-      </ul>
-      
-      <h3>Cross-functional Collaboration</h3>
-      <ul>
-        <li>Worked closely with Legal team on privacy and compliance requirements</li>
-        <li>Collaborated with cross-functional partners for implementation and monitoring</li>
-        <li>Reduced prevalence of bad actors through effective detection and enforcement</li>
-      </ul>
-      
-      <p><strong>Technologies:</strong> Machine Learning, Hack, Rust, TAO, ZippyDB, Memcache</p>
-    `,
-    footer: 'Tech: ML · Hack · Rust · TAO'
-  },
-  underage: {
-    title: 'Underage Reporting & Enforcement',
-    subtitle: 'Compliance',
-    body: `
-      <p>Led and built the service for enforcing policies on minors (under the age of 13) who are not allowed on the platform, ensuring compliance with regulatory requirements and FTC commitments.</p>
-      
-      <h3>System Architecture</h3>
-      <ul>
-        <li>Designed end-to-end service to support Facebook, Instagram, and Meta accounts</li>
-        <li>Built automated detection and enforcement pipelines</li>
-        <li>Implemented secure data retention and deletion mechanisms with committed SLAs</li>
-        <li>Created reporting systems for regulatory compliance</li>
-      </ul>
-      
-      <h3>Regulatory Compliance</h3>
-      <ul>
-        <li>Worked closely with Legal on various case studies, responses, and reports to FTC</li>
-        <li>Collaborated with Retention teams to ensure data deletion meets committed SLAs</li>
-        <li>Maintained comprehensive audit trails for regulatory oversight</li>
-      </ul>
-      
-      <p><strong>Technologies:</strong> Hack, Rust, TAO, ZippyDB, Memcache</p>
-    `,
-    footer: 'Tech: Hack · Rust · TAO'
-  },
-  gpi: {
-    title: 'GitHub Private Instances',
-    subtitle: 'Enterprise · Infrastructure',
-    body: `
-      <p>Led the virtual team architecting GitHub's new enterprise offering: GitHub Private Instances. This solution provides dedicated, isolated GitHub environments backed by Azure's cloud services stack.</p>
-      
-      <h3>Architecture & Design</h3>
-      <ul>
-        <li>Led topology investigations and architecture design of the control plane</li>
-        <li>Designed provisioning mechanisms and automation for enterprise deployments</li>
-        <li>Built container-based monitoring pipeline to pump syslog and statsd data to logging platform</li>
-        <li>Created comprehensive dashboard charts for various metric data</li>
-        <li>Set up alerting for system anomalies integrated with incident management</li>
-      </ul>
-      
-      <h3>Reliability & Operations</h3>
-      <ul>
-        <li>Designed observability solution to monitor pipelines for reliability</li>
-        <li>Implemented backup solution for primary nodes with reliability monitors</li>
-        <li>Automated configuration management and deployment processes</li>
-      </ul>
-      
-      <p><strong>Technologies:</strong> Azure, Containers, Kubernetes, Monitoring, Logging, Infrastructure as Code</p>
-    `,
-    footer: 'Tech: Azure · Containers · Monitoring'
-  },
-  testplatform: {
-    title: 'Test Platform V2 & MSTest V2',
-    subtitle: 'Open Source · Testing',
-    body: `
-      <p>Drove the design and implementation of the new open source, cross-platform .NET Core based Test Platform which powers all unit and integration testing via Visual Studio, VS Code, and Azure DevOps.</p>
-      
-      <h3>Key Contributions</h3>
-      <ul>
-        <li>Led design and implementation partnering with stakeholders: Test Explorer for Visual Studio, Live Unit Testing, .NET Core CLI, and third-party tooling like Rider</li>
-        <li>Implemented parallel discovery and execution support for .NET Core</li>
-        <li>Added protocol versioning in communication layer, reducing payload verbosity by <strong>~50%</strong></li>
-        <li>Worked on performance improvements targeting key Live Unit Testing scenarios</li>
-        <li>Achieved <strong>~40% performance improvement</strong> by removing redundancies</li>
-      </ul>
-      
-      <h3>MSTest V2 Adapter</h3>
-      <p>Led design and implementation of the MSTest V2 adapter, navigating ambiguities to make it open source and widely adopted across the .NET ecosystem.</p>
-      
-      <p><strong>References:</strong></p>
-      <ul>
-        <li><a href="https://github.com/microsoft/vstest" target="_blank" rel="noopener">github.com/microsoft/vstest</a></li>
-        <li><a href="https://github.com/microsoft/testfx" target="_blank" rel="noopener">github.com/microsoft/testfx</a></li>
-      </ul>
-      
-      <p><strong>Technologies:</strong> .NET Core, C#, Open Source, Testing Frameworks</p>
-    `,
-    footer: 'Tech: .NET Core · Open Source'
-  },
-  intellitest: {
-    title: 'IntelliTest for Visual Studio',
-    subtitle: 'Testing · Automation',
-    body: `
-      <p>Added a new tool for automatically generating unit tests called IntelliTest for Visual Studio 2015, helping developers write guardrails with ease and find issues with their code.</p>
-      
-      <h3>Achievement</h3>
-      <ul>
-        <li>Wrote the entire UI for the feature in less than <strong>3 weeks</strong></li>
-        <li>Implemented automated test generation algorithms</li>
-        <li>Integrated seamlessly with Visual Studio IDE</li>
-        <li>Enabled developers to quickly create comprehensive test suites</li>
-      </ul>
-      
-      <h3>Impact</h3>
-      <p>IntelliTest significantly reduced the time developers spent writing unit tests while improving code coverage and quality. The tool became a popular feature in Visual Studio for .NET developers.</p>
-      
-      <p><strong>Technologies:</strong> C#, Visual Studio SDK, WPF, Test Generation Algorithms</p>
-    `,
-    footer: 'Tech: C# · Visual Studio · WPF'
-  },
-  codedui: {
-    title: 'Coded UI Test',
-    subtitle: 'Testing · Windows',
-    body: `
-      <p>Responsibly drove adding support for Windows Store apps in Coded UI Test, enabling automated UI testing for the new Windows platform.</p>
-      
-      <h3>Key Contributions</h3>
-      <ul>
-        <li>Created specialized controls to represent new controls in the Windows OS</li>
-        <li>Built comprehensive test suite for the platform layer preventing regressions</li>
-        <li>Enabled automated UI testing for Windows Store applications</li>
-        <li>Ensured backward compatibility with existing test frameworks</li>
-      </ul>
-      
-      <p><strong>Technologies:</strong> C#, Windows Store APIs, UI Automation, Testing Frameworks</p>
-    `,
-    footer: 'Tech: C# · Windows Store · UI Automation'
+    var glowVisible = false;
+    document.addEventListener('mousemove', function (e) {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+      if (!glowVisible) { glow.style.opacity = '1'; glowVisible = true; }
+    }, { passive: true });
+    document.addEventListener('mouseleave', function () {
+      glow.style.opacity = '0'; glowVisible = false;
+    });
   }
-};
 
-// 8) Modal handling
-const modal = document.getElementById('modal');
-const modalBody = document.getElementById('modal-body');
-const modalOverlay = modal ? modal.querySelector('.modal-overlay') : null;
+  /* ── Init ──────────────────────────────────────────────────── */
+  initTheme();
+  initCanvas();
 
-function openProjectModal(id) {
-  const project = PROJECTS[id];
-  if (!project || !modal || !modalBody) return;
-  
-  modalBody.innerHTML = `
-    <h2 id="modal-title">${project.title}</h2>
-    <p class="muted" style="margin-bottom: 24px; font-size: 1.1rem;">${project.subtitle}</p>
-    ${project.body}
-  `;
-  
-  modal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-  
-  const content = modal.querySelector('.modal-content');
-  if (content && typeof content.focus === 'function') {
-    setTimeout(() => content.focus(), 100);
-  }
-}
-
-function closeProjectModal() {
-  if (!modal) return;
-  modal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-  if (modalBody) modalBody.innerHTML = '';
-}
-
-// Attach click handlers to project cards
-document.querySelectorAll('.project-card').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    openProjectModal(btn.dataset.project);
-  });
-  
-  btn.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      openProjectModal(btn.dataset.project);
-    }
-  });
-});
-
-// Close modal handlers
-document.querySelectorAll('.modal-close').forEach(btn => {
-  btn.addEventListener('click', closeProjectModal);
-});
-
-if (modal && modalOverlay) {
-  modalOverlay.addEventListener('click', closeProjectModal);
-}
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeProjectModal();
-});
-
-// 9) Add typing effect to hero name (optional enhancement)
-const heroName = document.querySelector('.hero-name');
-if (heroName) {
-  const text = heroName.textContent;
-  heroName.style.opacity = '1';
-}
-
-// 10) Parallax effect for hero section
-window.addEventListener('scroll', () => {
-  const scrolled = window.pageYOffset;
-  const hero = document.querySelector('.hero-content');
-  
-  if (hero && scrolled < window.innerHeight) {
-    hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-    hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
-  }
-});
-
-console.log('🚀 Portfolio loaded successfully!');
+}());
