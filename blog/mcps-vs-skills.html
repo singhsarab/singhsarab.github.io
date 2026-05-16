@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCPs vs Skills: Evolution of AI Extensibility — Sarabjot Singh</title>
+  <meta name="description" content="Deep dive into Model Context Protocols vs OpenAI Skills — understanding the architectural differences, ecosystem evolution, and the future of AI extensibility." />
+  <meta name="author" content="Sarabjot Singh" />
+  <meta property="og:title" content="MCPs vs Skills: Evolution of AI Extensibility" />
+  <meta property="og:description" content="Exploring how two competing paradigms for extending AI capabilities are shaping the future of agentic systems." />
+  <meta property="og:type" content="article" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* Article styles */
+    .article-header {
+      min-height: 50vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: calc(var(--header-h) + 60px) 32px 60px;
+    }
+
+    .article-header-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .article-breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      transition: color var(--transition);
+    }
+    .article-breadcrumb:hover { color: var(--accent); }
+
+    .article-category-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--accent-subtle);
+      padding: 6px 12px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    .article-title {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 500;
+      line-height: 1.15;
+      margin-bottom: 24px;
+      color: var(--text-primary);
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      flex-wrap: wrap;
+    }
+
+    .article-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .article-body {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 60px 32px;
+    }
+
+    .article-content {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text-secondary);
+    }
+
+    .article-content h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 48px 0 24px 0;
+      line-height: 1.3;
+    }
+
+    .article-content h2 em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .article-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 36px 0 16px 0;
+      line-height: 1.3;
+    }
+
+    .article-content p {
+      margin-bottom: 20px;
+    }
+
+    .article-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .article-content strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .article-content em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .article-content ul,
+    .article-content ol {
+      margin: 24px 0;
+      padding-left: 24px;
+    }
+
+    .article-content li {
+      margin-bottom: 12px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    .article-content li strong {
+      color: var(--text-primary);
+    }
+
+    .comparison-table {
+      margin: 40px 0;
+      overflow-x: auto;
+    }
+
+    .comparison-table table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+
+    .comparison-table th {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--divider);
+      padding: 16px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+    }
+
+    .comparison-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--divider);
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table tr:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .highlight-box {
+      background: var(--accent-subtle);
+      border-left: 4px solid var(--accent);
+      padding: 24px;
+      border-radius: var(--radius-md);
+      margin: 32px 0;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    .highlight-box strong {
+      color: var(--text-primary);
+    }
+
+    .insight-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 24px;
+      border-radius: var(--radius-md);
+      margin: 32px 0;
+    }
+
+    .insight-box h4 {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .insight-box p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .conclusion-section {
+      background: linear-gradient(135deg, var(--accent-subtle) 0%, transparent 100%);
+      border: 1px solid var(--accent);
+      padding: 40px;
+      border-radius: var(--radius-lg);
+      margin: 60px 0 40px 0;
+    }
+
+    .conclusion-section h2 {
+      margin-top: 0;
+    }
+
+    .article-footer {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 40px 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-nav a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all var(--transition);
+    }
+
+    .footer-nav a:hover {
+      gap: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .article-header {
+        padding: calc(var(--header-h) + 40px) 20px 40px;
+      }
+      .article-title {
+        font-size: clamp(1.8rem, 8vw, 2.4rem);
+      }
+      .article-body {
+        padding: 40px 20px;
+      }
+      .article-content h2 {
+        font-size: 1.4rem;
+        margin: 36px 0 20px 0;
+      }
+      .article-content h3 {
+        font-size: 1.1rem;
+        margin: 28px 0 14px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <header id="site-header">
+    <div class="header-inner">
+      <a href="/" class="wordmark" aria-label="Sarabjot Singh — Home">SS</a>
+
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="/#about">About</a>
+        <a href="/#experience">Experience</a>
+        <a href="/#skills">Skills</a>
+        <a href="/#education">Recognition</a>
+        <a href="/#highlights">Highlights</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle theme">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button id="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobile-nav" aria-label="Mobile navigation">
+      <a href="/#about">About</a>
+      <a href="/#experience">Experience</a>
+      <a href="/#skills">Skills</a>
+      <a href="/#education">Recognition</a>
+      <a href="/#highlights">Highlights</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <section class="article-header">
+        <div class="article-header-inner reveal">
+          <a href="/blog/" class="article-breadcrumb">← Back to Blog</a>
+          <span class="article-category-badge reveal reveal-d1">AI Infrastructure</span>
+          <h1 class="article-title reveal reveal-d2">MCPs vs Skills: <em>Evolution of AI Extensibility</em></h1>
+          <div class="article-meta reveal reveal-d3">
+            <span class="article-meta-item">📅 May 16, 2026</span>
+            <span class="article-meta-item">⏱️ 12 min read</span>
+            <span class="article-meta-item">✍️ Sarabjot Singh</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="article-body">
+        <div class="article-content reveal reveal-d2">
+          <p>
+            The landscape of AI extensibility is undergoing a fundamental shift. Over the past year, two competing approaches to connecting AI systems with external tools and capabilities have emerged as frontrunners: <strong>Model Context Protocols (MCPs)</strong> pioneered by Anthropic, and <strong>OpenAI Skills</strong>. While both aim to solve the same problem — enabling AI systems to access and use tools effectively — they represent distinctly different philosophies about how this should be achieved.
+          </p>
+
+          <p>
+            Understanding these differences isn't merely academic. As someone who has architected large-scale API governance systems and integrations at Meta, I've witnessed firsthand how foundational design decisions impact ecosystem adoption, security posture, and long-term viability. This article explores both approaches in depth, examines their architectural foundations, and discusses what their evolution tells us about the future of agentic AI systems.
+          </p>
+
+          <h2>What Are <em>MCPs and Skills?</em></h2>
+
+          <h3>Model Context Protocols (MCPs)</h3>
+
+          <p>
+            Model Context Protocols, introduced by Anthropic in late 2024, represent a standardized approach to extending AI model capabilities. At its core, an MCP is a communication protocol that allows AI systems to interact with external resources through a well-defined interface.
+          </p>
+
+          <p>
+            <strong>Key characteristics of MCPs:</strong>
+          </p>
+
+          <ul>
+            <li><strong>Protocol-based architecture:</strong> MCPs use a client-server model where the AI system acts as a client connecting to MCP servers that provide tools, resources, and capabilities.</li>
+            <li><strong>Standardized interface:</strong> The protocol defines a uniform way for all servers to expose capabilities, making integration predictable and consistent.</li>
+            <li><strong>Model-agnostic:</strong> MCPs are designed to work with any LLM, not tied to a specific vendor or model.</li>
+            <li><strong>Open specification:</strong> The protocol is openly documented, allowing third-party developers to build servers without vendor approval.</li>
+            <li><strong>JSON-RPC foundation:</strong> MCPs leverage JSON-RPC for message passing, a lightweight, text-based protocol familiar to most developers.</li>
+          </ul>
+
+          <p>
+            When you use an MCP, you're essentially plugging your AI into a standardized socket. The MCP server exposes resources (like files, databases, or APIs) and tools (like functions that can be executed). The AI system can discover available tools, understand their parameters, and invoke them through the protocol. This is similar to how software systems use APIs — standardized, versioned, and predictable.
+          </p>
+
+          <h3>OpenAI Skills</h3>
+
+          <p>
+            OpenAI Skills, announced as part of their expanded platform capabilities, take a different approach. Rather than focusing on a communication protocol, Skills are designed as discrete, packaged pieces of functionality that can be attached directly to OpenAI models.
+          </p>
+
+          <p>
+            <strong>Key characteristics of OpenAI Skills:</strong>
+          </p>
+
+          <ul>
+            <li><strong>Model-native integration:</strong> Skills are specifically designed for OpenAI models (GPT-4, o1, etc.) and leverage OpenAI's infrastructure directly.</li>
+            <li><strong>Function composition:</strong> Skills build upon existing function calling capabilities, extending them with richer semantics and better error handling.</li>
+            <li><strong>Platform-integrated:</strong> Skills are managed, versioned, and executed through OpenAI's platform ecosystem.</li>
+            <li><strong>Developer-friendly abstractions:</strong> Focus on reducing boilerplate through higher-level abstractions and pre-built components.</li>
+            <li><strong>API-driven execution:</strong> Skills are invoked through OpenAI's API, with the platform managing orchestration, retries, and state management.</li>
+          </ul>
+
+          <p>
+            OpenAI Skills feel more integrated — rather than connecting to an external server, you're leveraging capabilities that are tightly coupled with the model and platform. This approach emphasizes developer convenience and OpenAI's ecosystem lock-in.
+          </p>
+
+          <h2>Architectural <em>Foundations</em></h2>
+
+          <p>
+            Understanding the architectural differences between these two approaches is crucial. They solve the same problem but with fundamentally different assumptions about the nature of AI systems and how they should interact with the world.
+          </p>
+
+          <div class="comparison-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Aspect</th>
+                  <th>MCPs</th>
+                  <th>OpenAI Skills</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Protocol Type</strong></td>
+                  <td>Standardized client-server protocol</td>
+                  <td>Model-specific API integration</td>
+                </tr>
+                <tr>
+                  <td><strong>Vendor Lock-in</strong></td>
+                  <td>None — works with any LLM</td>
+                  <td>OpenAI-specific</td>
+                </tr>
+                <tr>
+                  <td><strong>Discovery Mechanism</strong></td>
+                  <td>Standardized tool descriptions in JSON</td>
+                  <td>OpenAI schema format</td>
+                </tr>
+                <tr>
+                  <td><strong>Execution Model</strong></td>
+                  <td>Direct client-server communication</td>
+                  <td>API proxy through OpenAI platform</td>
+                </tr>
+                <tr>
+                  <td><strong>State Management</strong></td>
+                  <td>Server-side (protocol-agnostic)</td>
+                  <td>Platform-managed</td>
+                </tr>
+                <tr>
+                  <td><strong>Authentication</strong></td>
+                  <td>Protocol-defined (flexible)</td>
+                  <td>OpenAI API keys + OAuth</td>
+                </tr>
+                <tr>
+                  <td><strong>Ecosystem</strong></td>
+                  <td>Open, community-driven</td>
+                  <td>Curated, platform-managed</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>MCPs: The Unix Philosophy Approach</h3>
+
+          <p>
+            MCPs embrace the Unix philosophy: do one thing and do it well. The protocol defines <em>how</em> tools are exposed and invoked, but remains agnostic about <em>what</em> those tools do or <em>who</em> uses them.
+          </p>
+
+          <p>
+            This design has profound implications:
+          </p>
+
+          <ul>
+            <li><strong>Composability:</strong> An MCP server can be used by any AI system, any application, or even multiple AI systems simultaneously. You can chain MCPs together to create complex tool ecosystems.</li>
+            <li><strong>Portability:</strong> If you build an MCP, you're not building for GPT-4 or Claude — you're building for the entire ecosystem. This dramatically increases the potential audience for your work.</li>
+            <li><strong>Governance at scale:</strong> Like the API governance systems I've built at Meta, MCPs benefit from consistent oversight. You can audit, monitor, and enforce policies across all MCP integrations uniformly.</li>
+            <li><strong>Resilience:</strong> If one MCP server goes down, others remain unaffected. If OpenAI changes their API, all Skills might be impacted — but MCPs insulate you from such changes.</li>
+          </ul>
+
+          <h3>OpenAI Skills: The Integrated Platform Approach</h3>
+
+          <p>
+            OpenAI Skills take a different tack: optimize for the specific context of OpenAI models and the OpenAI platform. Rather than a universal protocol, they're a deeply integrated layer within the OpenAI ecosystem.
+          </p>
+
+          <p>
+            This approach offers distinct advantages:
+          </p>
+
+          <ul>
+            <li><strong>Turnkey integration:</strong> Less boilerplate. You don't need to understand protocols or implement servers. You define a Skill, and it works with OpenAI models.</li>
+            <li><strong>Platform intelligence:</strong> OpenAI can apply model-specific optimizations, retry strategies, and error handling that are tailored to their models' behavior.</li>
+            <li><strong>Simplified deployment:</strong> No need to manage servers or handle authentication complexity. Everything is managed within the platform.</li>
+            <li><strong>Discoverability:</strong> Skills are discoverable within the OpenAI ecosystem, potentially leading to network effects and organic adoption.</li>
+          </ul>
+
+          <div class="highlight-box">
+            <strong>Key Insight:</strong> MCPs optimize for interoperability and portability across the entire AI ecosystem. OpenAI Skills optimize for developer convenience within OpenAI's platform. These aren't just technical differences — they reflect different visions for the future of AI extensibility.
+          </div>
+
+          <h2>How Each <em>Ecosystem Is Evolving</em></h2>
+
+          <h3>MCP Ecosystem Evolution</h3>
+
+          <p>
+            The MCP ecosystem is experiencing rapid growth across several vectors:
+          </p>
+
+          <p>
+            <strong>1. Diversity of servers:</strong> We're seeing MCPs created for everything from database access (SQL, MongoDB, PostgreSQL) to document retrieval (filesystem operations), web browsing, and specialized domain tools. Each one is a drop-in component that can be mixed and matched.
+          </p>
+
+          <p>
+            <strong>2. Multiple model support:</strong> Beyond Anthropic's Claude, developers are building MCP support into other systems. This is the natural evolution of an open protocol — adoption spreads as more players recognize the value.
+          </p>
+
+          <p>
+            <strong>3. Enterprise adoption:</strong> Organizations recognize MCPs as an enterprise-grade solution for AI governance. A single MCP can provide audit trails, enforce security policies, and maintain compliance standards across all AI tool access.
+          </p>
+
+          <p>
+            <strong>4. Tooling maturity:</strong> We're seeing frameworks and libraries that make it easier to build MCPs. The barrier to entry is dropping, which accelerates ecosystem growth.
+          </p>
+
+          <p>
+            <strong>5. Integration with existing infrastructure:</strong> MCPs are being bridged with existing systems — Zapier integrations, Slack bots, enterprise message queues. They're becoming a universal adapter layer.
+          </p>
+
+          <div class="insight-box">
+            <h4>Observation</h4>
+            <p>
+              The MCP ecosystem is following the trajectory of successful open protocols: exponential tool diversity, multi-vendor support, and emergence of governance frameworks. We're witnessing the early stages of a TCP/IP-like moment for AI tool integration.
+            </p>
+          </div>
+
+          <h3>OpenAI Skills Ecosystem Evolution</h3>
+
+          <p>
+            The Skills ecosystem is following a different trajectory:
+          </p>
+
+          <p>
+            <strong>1. Platform consolidation:</strong> Skills are being incorporated deeper into OpenAI's product offerings. Agents built on the OpenAI platform increasingly rely on Skills as their primary tool integration mechanism.
+          </p>
+
+          <p>
+            <strong>2. Curated marketplace:</strong> OpenAI is building a marketplace of Skills, similar to app stores. This creates network effects and makes discovery easier, but also means OpenAI controls what gets promoted.
+          </p>
+
+          <p>
+            <strong>3. Model optimization:</strong> Each OpenAI model release includes improvements to how it uses Skills. The tight coupling between model and Skills allows OpenAI to continuously improve tool usage patterns.
+          </p>
+
+          <p>
+            <strong>4. Developer velocity:</strong> OpenAI is investing in tools, documentation, and SDKs that make building Skills faster. The lower barrier to entry is driving adoption within the OpenAI developer community.
+          </p>
+
+          <p>
+            <strong>5. Competitive positioning:</strong> Skills are part of OpenAI's strategy to deepen vendor lock-in. Developers who build on Skills are more likely to stay within the OpenAI ecosystem.
+          </p>
+
+          <div class="insight-box">
+            <h4>Observation</h4>
+            <p>
+              The Skills ecosystem is following the trajectory of proprietary platform integrations: controlled growth, optimized for a specific vendor's ecosystem, and strong incentives for developers to stay within the platform boundaries.
+            </p>
+          </div>
+
+          <h2>What This Means: <em>The Broader Picture</em></h2>
+
+          <p>
+            These two approaches represent a fundamental tension in software architecture: <strong>open vs. closed</strong>, <strong>portable vs. integrated</strong>, <strong>ecosystem vs. platform</strong>.
+          </p>
+
+          <p>
+            Based on my experience building large-scale systems at Meta and Microsoft, here's my assessment:
+          </p>
+
+          <h3>For Individual Developers</h3>
+
+          <p>
+            If you're building tools that you want to be widely used, MCPs are the better long-term bet. You build once, and your tool works with Claude, future models, and any system that adopts MCPs. Skills lock you into OpenAI's ecosystem, which has value today but creates risk if you want to diversify.
+          </p>
+
+          <p>
+            However, if you're deeply embedded in the OpenAI ecosystem and want the fastest path to shipping, Skills offer a smoother developer experience with less infrastructure to manage.
+          </p>
+
+          <h3>For Enterprises</h3>
+
+          <p>
+            Organizations should strongly consider MCPs for governance and interoperability reasons. MCPs allow you to:
+          </p>
+
+          <ul>
+            <li>Maintain a single audit trail for all AI tool access, regardless of the underlying model</li>
+            <li>Enforce consistent security policies across all integrations</li>
+            <li>Avoid lock-in to a single model provider</li>
+            <li>Future-proof investments in AI infrastructure</li>
+          </ul>
+
+          <p>
+            Skills make sense as an additional layer within your OpenAI deployment, but shouldn't be your only integration mechanism if you're serious about AI governance.
+          </p>
+
+          <h3>For the Broader AI Ecosystem</h3>
+
+          <p>
+            The healthiest outcome would be convergence. If MCPs become the de facto standard (as has happened with other protocols like HTTP), and Skills become one implementation of MCP-like functionality, we'd have the best of both worlds: a universal protocol with optimized implementations for different platforms.
+          </p>
+
+          <p>
+            Interestingly, OpenAI could choose to make Skills MCP-compatible, which would significantly expand their utility without giving up platform advantages. This seems like a natural evolution.
+          </p>
+
+          <h2>Technical Deep-Dive: <em>The Implementation Gap</em></h2>
+
+          <p>
+            Let me get into the technical specifics of how these differ in practice.
+          </p>
+
+          <h3>Tool Discovery and Schema</h3>
+
+          <p>
+            In MCPs, tools are discovered through a standardized protocol message. An MCP server responds to requests for available tools with a JSON schema describing:
+          </p>
+
+          <ul>
+            <li>Tool name and description</li>
+            <li>Input parameters and their types (JSON schema format)</li>
+            <li>Expected output format</li>
+            <li>Error conditions and handling</li>
+          </ul>
+
+          <p>
+            OpenAI Skills use a similar schema but optimized for OpenAI's function calling format. The schema is designed to work well with how GPT models understand function calls, including custom instructions about when to invoke the Skill.
+          </p>
+
+          <p>
+            From an implementation perspective, MCPs require you to run a server process. OpenAI Skills can be deployed as:
+          </p>
+
+          <ul>
+            <li><strong>Webhook/HTTP endpoints:</strong> OpenAI calls your endpoint when a Skill is invoked</li>
+            <li><strong>Integrations:</strong> Pre-built integrations with popular services (Stripe, Salesforce, etc.)</li>
+            <li><strong>Custom code:</strong> Code that runs within OpenAI's runtime environment</li>
+          </ul>
+
+          <h3>Authentication and Authorization</h3>
+
+          <p>
+            This is where the differences become particularly important for enterprise use cases.
+          </p>
+
+          <p>
+            MCPs define authentication at the protocol level, giving you flexibility. You can use:
+          </p>
+
+          <ul>
+            <li>Static API keys</li>
+            <li>OAuth flows</li>
+            <li>Mutual TLS</li>
+            <li>Custom authentication schemes</li>
+          </ul>
+
+          <p>
+            This flexibility is powerful for enterprises. You can integrate MCPs with your existing IAM infrastructure.
+          </p>
+
+          <p>
+            OpenAI Skills defer authentication to the underlying integration. For webhooks, you typically use OpenAI API keys or custom authentication. For integrations like Stripe, you provide credentials within the OpenAI platform. This is simpler for basic cases but less flexible for complex enterprises.
+          </p>
+
+          <h2>The <em>Future Is Hybrid</em></h2>
+
+          <p>
+            My prediction: we're moving toward a hybrid future where both MCPs and Skills thrive, but in different roles.
+          </p>
+
+          <p>
+            <strong>MCPs will become the infrastructure layer:</strong> The universal, boring protocol that everyone adopts because it just works. Like TCP/IP or HTTP, it will fade into the background as the default way to extend AI systems.
+          </p>
+
+          <p>
+            <strong>Skills will become a higher-level abstraction:</strong> Specific implementations optimized for particular platforms. OpenAI Skills will be how you integrate with OpenAI efficiently. Anthropic might create "Claude Skills" (or simply call them MCPs). Other platforms will have their own flavors.
+          </p>
+
+          <p>
+            The smart play for organizations is to adopt MCPs as your foundational integration layer, while also supporting Skills for the best developer experience on popular platforms.
+          </p>
+
+          <section class="conclusion-section">
+            <h2>Conclusion: <em>Choose Your Path</em></h2>
+
+            <p>
+              MCPs and Skills represent two visions for AI extensibility. MCPs are about building an open, interoperable ecosystem. Skills are about optimizing for a specific platform's capabilities and convenience.
+            </p>
+
+            <p>
+              Neither is inherently "better" — they optimize for different goals. But for most organizations, starting with MCPs as your foundation and layering Skills on top gives you the best of both worlds: long-term portability and interoperability, combined with the convenience of platform-specific optimizations.
+            </p>
+
+            <p>
+              The broader lesson from my experience building large-scale systems: <strong>protocol-level standardization enables faster innovation at the application level.</strong> When everyone agrees on the protocol (HTTP, JSON-RPC, protobuf), you can focus innovation on what matters: building better tools and services.
+            </p>
+
+            <p>
+              MCPs represent that kind of standardization for AI tool integration. If they gain adoption across multiple platforms, they'll unlock an explosion of creativity in the AI tool ecosystem — just as HTTP enabled the web.
+            </p>
+
+            <p>
+              Watch this space. The next year will be crucial in determining whether MCPs become the universal standard or whether we end up with a fragmented ecosystem of proprietary protocols. My money is on the former — but with the nuance that platform-specific optimizations will continue to exist as a value-add layer on top.
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <section class="article-footer">
+        <div class="footer-nav">
+          <a href="/blog/">← Back to all articles</a>
+          <a href="/">← Back to home</a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© <span id="year"></span> Sarabjot Singh</span>
+      <a href="#" class="back-top" aria-label="Back to top">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+        Top
+      </a>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="../app.js"></script>
+</body>
+</html>
